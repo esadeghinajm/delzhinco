@@ -1,23 +1,19 @@
-<!-- components/TheHeader.vue -->
+<!-- components/LayoutHeader.vue -->
 <template>
     <header class="w-full fixed top-0 z-[1000] transition-all duration-300 ease-in-out"
-        :class="[isScrolled ? 'bg-primary shadow-lg' : 'bg-accent']">
+        :class="[isScrolled ? 'bg-primary dark:bg-gray-800 shadow-lg' : 'bg-accent dark:bg-gray-900']">
         <nav class="w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-[90px]" :dir="dir"
             :class="{ 'flex-row-reverse': dir === 'rtl' }">
-
             <div class="flex items-center gap-4">
                 <button class="md:hidden hamburger z-[1001]" :class="{ 'active': isMenuOpen }" @click="toggleMenu"
-                    aria-label="باز و بسته کردن منو">
-                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary']"></span>
-                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary']"></span>
-                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary']"></span>
+                    aria-label="Toggle Menu">
+                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary dark:bg-accent']"></span>
+                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary dark:bg-accent']"></span>
+                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary dark:bg-accent']"></span>
                 </button>
-
                 <div class="hidden sm:flex items-center gap-4">
-                    <a v-if="dir === 'rtl'" href="/en" class="lang-switcher text-text-on-primary font-bold">EN</a>
-                    <a v-else href="/" class="lang-switcher text-text-on-primary font-bold">FA</a>
-                    <a href="https://www.instagram.com/delzhin_shipping" target="_blank"
-                        aria-label="صفحه اینستاگرام دلژین"
+                    <LanguageSwitcher />
+                    <a href="https://www.instagram.com/delzhin_shipping" target="_blank" aria-label="Instagram Page"
                         class="text-text-on-primary text-xl hover:text-primary transition-colors">
                         <i class="fab fa-instagram"></i>
                     </a>
@@ -25,30 +21,36 @@
                 <div class="text-text-on-primary text-xs font-light hidden xl:block whitespace-nowrap">{{
                     currentDateTime }}</div>
             </div>
-
             <div class="hidden md:flex items-center justify-center">
                 <ul class="flex items-center gap-x-4 lg:gap-x-8 text-sm lg:text-base">
-                    <li><a href="/" class="nav-link">صفحه نخست</a></li>
-                    <li><a href="#" class="nav-link">سرویس‌ها</a></li>
-                    <li><a href="/news" class="nav-link">اخبار</a></li>
-                    <li><a href="/about" class="nav-link">درباره ما</a></li>
-                    <li><a href="#" class="nav-link">تماس با ما</a></li>
+                    <li>
+                        <NuxtLink to="/" class="nav-link">{{ $t('home') }}</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink to="/services" class="nav-link">{{ $t('services') }}</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink to="/news" class="nav-link">{{ $t('news') }}</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink to="/about" class="nav-link">{{ $t('about') }}</NuxtLink>
+                    </li>
+                    <li>
+                        <NuxtLink to="/contact" class="nav-link">{{ $t('contact') }}</NuxtLink>
+                    </li>
                 </ul>
             </div>
-
-            <a href="/" aria-label="صفحه اصلی دلژین" class="flex-shrink-0">
-                <img src="/images/logo-darkBlueText/Final2-01.png" alt="لوگو شرکت حمل و نقل دلژین"
-                    class="h-28 md:h-32" />
-            </a>
-
+            <NuxtLink to="/" aria-label="Homepage" class="flex-shrink-0">
+                <NuxtImg src="/images/logo-darkBlueText/Final2-01.png" alt="Delzhin Company Logo" class="h-28 md:h-32"
+                    densities="x1 x2" />
+            </NuxtLink>
         </nav>
-
         <div
             class="marquee bg-white text-primary h-[42px] flex items-center justify-center border-b border-t border-gray-200 px-2">
             <div
                 class="font-sans font-bold text-xs sm:text-sm flex flex-col sm:flex-row gap-y-2 sm:gap-y-0 sm:gap-x-8 items-center justify-center h-full">
-                <span>دلار (اسکناس/ PMO ) : ۷۲۴,۵۳۸ -  ۱۰۷,۸۴۰  تومان</span>
-                <span>یورو (اسکناس/ PMO ) : ۸۴۳,۸۲۲ -  ۱۲۵,۳۸۰  تومان</span>
+                <span>دلار (اسکناس/ PMO ) : ۷۲۴,۵۳۸ - ۱۰۷,۸۴۰ تومان</span>
+                <span>یورو (اسکناس/ PMO ) : ۸۴۳,۸۲۲ - ۱۲۵,۳۸۰ تومان</span>
             </div>
         </div>
 
@@ -115,19 +117,27 @@ onUnmounted(() => {
     clearInterval(dateTimeInterval);
 });
 </script>
-
 <style scoped>
 .nav-link {
     @apply text-text-on-primary font-medium pb-1 relative transition-colors;
 }
 
-.scrolled .nav-link {
-    @apply hover:text-accent;
+.scrolled .nav-link:hover {
+    @apply text-accent;
 }
 
-header:not(.scrolled) .nav-link {
-    @apply hover:text-primary;
+header:not(.scrolled) .nav-link:hover {
+    @apply text-primary;
 }
+
+.router-link-exact-active {
+    @apply text-primary dark:text-accent;
+}
+
+.scrolled .router-link-exact-active {
+    @apply text-accent;
+}
+
 
 .scrolled .marquee {
     transform: translateY(100%);
