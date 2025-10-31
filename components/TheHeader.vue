@@ -1,65 +1,188 @@
-<!-- components/layout/TheHeader.vue -->
+<!-- components/TheHeader.vue -->
 <template>
-    <header class="bg-accent w-full fixed top-0 right-0 z-[1000] transition-all duration-300 ease-in-out">
-        <div class="marquee bg-white text-primary h-[42px] flex justify-center items-center border-b border-gray-200">
+    <!-- 
+    نکته ۴: تغییر داینامیک رنگ پس‌زمینه
+    به جای افزودن کلاس .scrolled، ما مستقیماً کلاس رنگ را تغییر می‌دهیم.
+    اگر اسکرول نشده باشد bg-accent (طلایی) و اگر اسکرول شده باشد bg-primary (سرمه‌ای) خواهد بود.
+  -->
+    <header class="w-full fixed top-0 right-0 z-[1000] transition-all duration-300 ease-in-out"
+        :class="[isScrolled ? 'bg-primary shadow-lg' : 'bg-accent']">
+        <!-- 
+      نکته ۱ و ۲: اصلاح ساختار برای RTL و منوی افقی
+      ما ترتیب عناصر را در flex container اصلی (تگ nav) تغییر می‌دهیم.
+      لوگو در انتها قرار می‌گیرد تا در راستای راست‌چین، اول نمایش داده شود.
+    -->
+        <nav class="container mx-auto px-4 flex justify-between items-center h-[90px]">
+            <!-- بخش چپ (اکشن‌ها) -->
+            <div class="flex items-center gap-5 z-[1001]">
+                <a href="/en" class="lang-switcher text-text-on-primary font-bold">EN</a>
+                <a href="https://www.instagram.com/delzhin_shipping" target="_blank" aria-label="صفحه اینستاگرام دلژین"
+                    class="text-text-on-primary text-xl hover:text-primary transition-colors">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <div class="text-text-on-primary text-sm font-light hidden md:block" dir="ltr">{{ currentDateTime }}
+                </div>
+                <button class="lg:hidden hamburger z-[1001]" :class="{ 'active': isMenuOpen }" @click="toggleMenu"
+                    aria-label="باز و بسته کردن منو">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </button>
+            </div>
+
+            <!-- بخش وسط (منوی دسکتاپ) -->
+            <!-- نکته ۲: این منو اکنون فقط برای دسکتاپ است (hidden lg:flex) -->
+            <div class="hidden lg:flex">
+                <ul class="flex items-center gap-8">
+                    <li><a href="/" class="nav-link">صفحه نخست</a></li>
+                    <li><a href="#" class="nav-link">سرویس‌ها</a></li>
+                    <li><a href="/news" class="nav-link">اخبار</a></li>
+                    <li><a href="/about" class="nav-link">درباره ما</a></li>
+                    <li><a href="#" class="nav-link">تماس با ما</a></li>
+                </ul>
+            </div>
+
+            <!-- بخش راست (لوگو) -->
+            <a href="/" aria-label="صفحه اصلی دلژین">
+                <img src="/images/logo-darkBlueText/Final2-01.png" alt="لوگو شرکت حمل و نقل دلژین" class="h-32" />
+            </a>
+        </nav>
+
+        <!-- 
+      نکته ۳: انتقال Marquee به زیر نوار ناوبری
+      ما این بخش را از بالای nav به پایین آن منتقل کردیم.
+    -->
+        <div
+            class="marquee bg-white text-primary h-[42px] flex justify-center items-center border-b border-t border-gray-200">
             <pre
                 class="font-sans font-bold">یورو (اسکناس/ PMO ) : ۸۴۳,۸۲۲ -  ۱۲۵,۳۸۰  تومان        دلار (اسکناس/ PMO ) : ۷۲۴,۵۳۸ -  ۱۰۷,۸۴۰  تومان</pre>
         </div>
-        <div class="container mx-auto px-4">
-            <nav class="flex justify-between items-center h-[90px]">
-                <a href="/" class="navbar-logo" aria-label="صفحه اصلی دلژین">
-                    <img src="/images/logo-darkBlueText/Final2-01.png" alt="لوگو شرکت حمل و نقل دلژین" class="h-32" />
-                </a>
 
-                <div class="hidden lg:flex">
-                    <ul class="flex items-center gap-8">
-                        <li><a href="/"
-                                class="text-text-on-primary font-medium pb-1 relative hover:text-primary active:text-primary">صفحه
-                                نخست</a></li>
-                        <!-- منوی سرویس‌ها را بعدا به یک کامپوننت جدا تبدیل می‌کنیم -->
-                        <li><a href="#" class="text-text-on-primary font-medium pb-1">سرویس‌ها</a></li>
-                        <li><a href="/news" class="text-text-on-primary font-medium pb-1">اخبار</a></li>
-                        <li><a href="/about" class="text-text-on-primary font-medium pb-1">درباره ما</a></li>
-                        <li><a href="#" class="text-text-on-primary font-medium pb-1">تماس با ما</a></li>
-                    </ul>
-                </div>
-
-                <div class="flex items-center gap-5">
-                    <a href="/en" class="lang-switcher text-text-on-primary font-bold">EN</a>
-                    <a href="https://www.instagram.com/delzhin_shipping" target="_blank"
-                        aria-label="صفحه اینستاگرام دلژین" class="text-text-on-primary text-xl">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                    <!-- نمایش تاریخ و زمان را بعدا با Vue پیاده‌سازی می‌کنیم -->
-                    <div id="datetime-display" class="text-text-on-primary text-sm font-light hidden md:block"></div>
-                </div>
-
-                <!-- دکمه همبرگر برای موبایل -->
-                <button class="lg:hidden hamburger" aria-label="باز و بسته کردن منو">
-                    <span class="bar block w-6 h-0.5 my-1 bg-text-on-primary transition-all duration-300"></span>
-                    <span class="bar block w-6 h-0.5 my-1 bg-text-on-primary transition-all duration-300"></span>
-                    <span class="bar block w-6 h-0.5 my-1 bg-text-on-primary transition-all duration-300"></span>
-                </button>
-            </nav>
+        <!-- منوی موبایل (جدا شده برای خوانایی بهتر) -->
+        <div class="nav-menu-mobile" :class="{ 'active': isMenuOpen }">
+            <ul class="flex flex-col gap-8 text-center">
+                <li><a href="/" class="text-2xl text-white">صفحه نخست</a></li>
+                <li><a href="#" class="text-2xl text-white">سرویس‌ها</a></li>
+                <li><a href="/news" class="text-2xl text-white">اخبار</a></li>
+                <li><a href="/about" class="text-2xl text-white">درباره ما</a></li>
+                <li><a href="#" class="text-2xl text-white">تماس با ما</a></li>
+            </ul>
         </div>
     </header>
 </template>
 
 <script setup>
-// منطق مربوط به هدر (مانند منوی موبایل و sticky شدن) را در مراحل بعدی در اینجا اضافه خواهیم کرد.
+import { ref, onMounted, onUnmounted } from 'vue';
+import moment from 'moment-jalaali';
+
+const isMenuOpen = ref(false);
+const toggleMenu = () => {
+    isMenuOpen.value = !isMenuOpen.value;
+};
+
+const isScrolled = ref(false);
+const handleScroll = () => {
+    isScrolled.value = window.scrollY > 10;
+};
+
+const currentDateTime = ref('');
+let dateTimeInterval;
+
+const updateDateTime = () => {
+    moment.updateLocale('fa', { jMonths: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"] });
+    moment.locale('fa');
+    const jalaaliDate = moment().format('dddd jD jMMMM jYYYY');
+    const time = moment().format('HH:mm');
+    moment.locale('en');
+    const gregorianDate = moment().format('ddd, MMM DD, YY');
+    currentDateTime.value = `${jalaaliDate} | ${time} | ${gregorianDate}`;
+};
+
+onMounted(() => {
+    window.addEventListener('scroll', handleScroll);
+    updateDateTime();
+    dateTimeInterval = setInterval(updateDateTime, 1000);
+});
+
+onUnmounted(() => {
+    window.removeEventListener('scroll', handleScroll);
+    clearInterval(dateTimeInterval);
+});
 </script>
 
 <style scoped>
-/* استایل‌های خیلی خاص که با Tailwind سخت هستند را می‌توان اینجا نوشت */
-/* برای مثال: استایل خط زیر لینک فعال منو */
-.nav-menu a.active::after,
-.nav-menu a:hover::after {
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 0;
+/* استایل‌های لینک‌های منو برای خوانایی بهتر جدا شده‌اند */
+.nav-link {
+    @apply text-text-on-primary font-medium pb-1 relative transition-colors;
+}
+
+/* رنگ لینک‌ها بر اساس حالت اسکرول */
+.scrolled .nav-link {
+    @apply hover:text-accent;
+}
+
+.scrolled .nav-link.active {
+    /* 'active' class needs to be implemented with Nuxt's router-link-active */
+    @apply text-accent;
+}
+
+header:not(.scrolled) .nav-link {
+    @apply hover:text-primary;
+}
+
+header:not(.scrolled) .nav-link.active {
+    @apply text-primary;
+}
+
+/* مخفی کردن نوار قیمت هنگام اسکرول */
+.scrolled .marquee {
+    transform: translateY(100%);
+    height: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
+}
+
+.marquee {
+    transition: all 0.3s ease-in-out;
+}
+
+/* استایل‌های همبرگر و منوی موبایل */
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    background-color: var(--text-on-primary);
+    transition: all 0.3s ease-in-out;
+}
+
+.nav-menu-mobile {
+    position: fixed;
+    right: -100%;
+    top: 0;
+    background-color: var(--primary-color);
     width: 100%;
-    height: 2px;
-    background-color: currentColor;
+    height: 100vh;
+    transition: 0.4s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-menu-mobile.active {
+    right: 0;
+}
+
+.hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+}
+
+.hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
 }
 </style>
