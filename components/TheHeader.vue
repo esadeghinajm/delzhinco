@@ -1,39 +1,33 @@
 <!-- components/TheHeader.vue -->
 <template>
-    <!-- 
-    نکته ۴: تغییر داینامیک رنگ پس‌زمینه
-    به جای افزودن کلاس .scrolled، ما مستقیماً کلاس رنگ را تغییر می‌دهیم.
-    اگر اسکرول نشده باشد bg-accent (طلایی) و اگر اسکرول شده باشد bg-primary (سرمه‌ای) خواهد بود.
-  -->
-    <header class="w-full fixed top-0 right-0 z-[1000] transition-all duration-300 ease-in-out"
+    <header class="w-full fixed top-0 z-[1000] transition-all duration-300 ease-in-out"
         :class="[isScrolled ? 'bg-primary shadow-lg' : 'bg-accent']">
-        <!-- 
-      نکته ۱ و ۲: اصلاح ساختار برای RTL و منوی افقی
-      ما ترتیب عناصر را در flex container اصلی (تگ nav) تغییر می‌دهیم.
-      لوگو در انتها قرار می‌گیرد تا در راستای راست‌چین، اول نمایش داده شود.
-    -->
-        <nav class="container mx-auto px-4 flex justify-between items-center h-[90px]">
-            <!-- بخش چپ (اکشن‌ها) -->
-            <div class="flex items-center gap-5 z-[1001]">
-                <a href="/en" class="lang-switcher text-text-on-primary font-bold">EN</a>
-                <a href="https://www.instagram.com/delzhin_shipping" target="_blank" aria-label="صفحه اینستاگرام دلژین"
-                    class="text-text-on-primary text-xl hover:text-primary transition-colors">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <div class="text-text-on-primary text-sm font-light hidden md:block" dir="ltr">{{ currentDateTime }}
-                </div>
-                <button class="lg:hidden hamburger z-[1001]" :class="{ 'active': isMenuOpen }" @click="toggleMenu"
+        <nav class="w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-[90px]" :dir="dir"
+            :class="{ 'flex-row-reverse': dir === 'rtl' }">
+
+            <div class="flex items-center gap-4">
+                <button class="md:hidden hamburger z-[1001]" :class="{ 'active': isMenuOpen }" @click="toggleMenu"
                     aria-label="باز و بسته کردن منو">
-                    <span class="bar"></span>
-                    <span class="bar"></span>
-                    <span class="bar"></span>
+                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary']"></span>
+                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary']"></span>
+                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary']"></span>
                 </button>
+
+                <div class="hidden sm:flex items-center gap-4">
+                    <a v-if="dir === 'rtl'" href="/en" class="lang-switcher text-text-on-primary font-bold">EN</a>
+                    <a v-else href="/" class="lang-switcher text-text-on-primary font-bold">FA</a>
+                    <a href="https://www.instagram.com/delzhin_shipping" target="_blank"
+                        aria-label="صفحه اینستاگرام دلژین"
+                        class="text-text-on-primary text-xl hover:text-primary transition-colors">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                </div>
+                <div class="text-text-on-primary text-xs font-light hidden xl:block whitespace-nowrap">{{
+                    currentDateTime }}</div>
             </div>
 
-            <!-- بخش وسط (منوی دسکتاپ) -->
-            <!-- نکته ۲: این منو اکنون فقط برای دسکتاپ است (hidden lg:flex) -->
-            <div class="hidden lg:flex">
-                <ul class="flex items-center gap-8">
+            <div class="hidden md:flex items-center justify-center">
+                <ul class="flex items-center gap-x-4 lg:gap-x-8 text-sm lg:text-base">
                     <li><a href="/" class="nav-link">صفحه نخست</a></li>
                     <li><a href="#" class="nav-link">سرویس‌ها</a></li>
                     <li><a href="/news" class="nav-link">اخبار</a></li>
@@ -42,66 +36,78 @@
                 </ul>
             </div>
 
-            <!-- بخش راست (لوگو) -->
-            <a href="/" aria-label="صفحه اصلی دلژین">
-                <img src="/images/logo-darkBlueText/Final2-01.png" alt="لوگو شرکت حمل و نقل دلژین" class="h-32" />
+            <a href="/" aria-label="صفحه اصلی دلژین" class="flex-shrink-0">
+                <img src="/images/logo-darkBlueText/Final2-01.png" alt="لوگو شرکت حمل و نقل دلژین"
+                    class="h-28 md:h-32" />
             </a>
+
         </nav>
 
-        <!-- 
-      نکته ۳: انتقال Marquee به زیر نوار ناوبری
-      ما این بخش را از بالای nav به پایین آن منتقل کردیم.
-    -->
         <div
-            class="marquee bg-white text-primary h-[42px] flex justify-center items-center border-b border-t border-gray-200">
-            <pre
-                class="font-sans font-bold">یورو (اسکناس/ PMO ) : ۸۴۳,۸۲۲ -  ۱۲۵,۳۸۰  تومان        دلار (اسکناس/ PMO ) : ۷۲۴,۵۳۸ -  ۱۰۷,۸۴۰  تومان</pre>
+            class="marquee bg-white text-primary h-[42px] flex items-center justify-center border-b border-t border-gray-200 px-2">
+            <div
+                class="font-sans font-bold text-xs sm:text-sm flex flex-col sm:flex-row gap-y-2 sm:gap-y-0 sm:gap-x-8 items-center justify-center h-full">
+                <span>دلار (اسکناس/ PMO ) : ۷۲۴,۵۳۸ -  ۱۰۷,۸۴۰  تومان</span>
+                <span>یورو (اسکناس/ PMO ) : ۸۴۳,۸۲۲ -  ۱۲۵,۳۸۰  تومان</span>
+            </div>
         </div>
 
-        <!-- منوی موبایل (جدا شده برای خوانایی بهتر) -->
-        <div class="nav-menu-mobile" :class="{ 'active': isMenuOpen }">
-            <ul class="flex flex-col gap-8 text-center">
-                <li><a href="/" class="text-2xl text-white">صفحه نخست</a></li>
-                <li><a href="#" class="text-2xl text-white">سرویس‌ها</a></li>
-                <li><a href="/news" class="text-2xl text-white">اخبار</a></li>
-                <li><a href="/about" class="text-2xl text-white">درباره ما</a></li>
-                <li><a href="#" class="text-2xl text-white">تماس با ما</a></li>
+        <div class="nav-menu-mobile" :class="{
+            'active': isMenuOpen,
+            'bg-primary': !isScrolled,
+            'bg-accent': isScrolled
+        }">
+            <ul class="flex flex-col gap-2 text-center">
+                <li><a href="/" class="block py-3 text-lg font-bold"
+                        :class="[isScrolled ? 'text-primary' : 'text-accent']" @click="toggleMenu">صفحه نخست</a></li>
+                <li><a href="#" class="block py-3 text-lg font-bold"
+                        :class="[isScrolled ? 'text-primary' : 'text-accent']" @click="toggleMenu">سرویس‌ها</a></li>
+                <li><a href="/news" class="block py-3 text-lg font-bold"
+                        :class="[isScrolled ? 'text-primary' : 'text-accent']" @click="toggleMenu">اخبار</a></li>
+                <li><a href="/about" class="block py-3 text-lg font-bold"
+                        :class="[isScrolled ? 'text-primary' : 'text-accent']" @click="toggleMenu">درباره ما</a></li>
+                <li><a href="#" class="block py-3 text-lg font-bold"
+                        :class="[isScrolled ? 'text-primary' : 'text-accent']" @click="toggleMenu">تماس با ما</a></li>
             </ul>
         </div>
     </header>
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, onMounted, onUnmounted, computed } from 'vue';
 import moment from 'moment-jalaali';
 
+const { localeProperties } = useI18n();
+const dir = computed(() => localeProperties.value.dir);
+
 const isMenuOpen = ref(false);
-const toggleMenu = () => {
-    isMenuOpen.value = !isMenuOpen.value;
-};
+const toggleMenu = () => isMenuOpen.value = !isMenuOpen.value;
 
 const isScrolled = ref(false);
-const handleScroll = () => {
-    isScrolled.value = window.scrollY > 10;
-};
+const handleScroll = () => isScrolled.value = window.scrollY > 10;
 
 const currentDateTime = ref('');
 let dateTimeInterval;
 
 const updateDateTime = () => {
-    moment.updateLocale('fa', { jMonths: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"] });
-    moment.locale('fa');
-    const jalaaliDate = moment().format('dddd jD jMMMM jYYYY');
-    const time = moment().format('HH:mm');
-    moment.locale('en');
-    const gregorianDate = moment().format('ddd, MMM DD, YY');
-    currentDateTime.value = `${jalaaliDate} | ${time} | ${gregorianDate}`;
+    if (dir.value === 'rtl') {
+        moment.updateLocale('fa', { jMonths: ["فروردین", "اردیبهشت", "خرداد", "تیر", "مرداد", "شهریور", "مهر", "آبان", "آذر", "دی", "بهمن", "اسفند"] });
+        moment.locale('fa');
+        const jalaaliDate = moment().format('dddd jD jMMMM');
+        const time = moment().format('HH:mm');
+        currentDateTime.value = `${jalaaliDate} | ${time}`;
+    } else {
+        moment.locale('en');
+        const gregorianDate = moment().format('dddd, MMMM DD');
+        const time = moment().format('HH:mm');
+        currentDateTime.value = `${gregorianDate} | ${time}`;
+    }
 };
 
 onMounted(() => {
     window.addEventListener('scroll', handleScroll);
     updateDateTime();
-    dateTimeInterval = setInterval(updateDateTime, 1000);
+    dateTimeInterval = setInterval(updateDateTime, 60000);
 });
 
 onUnmounted(() => {
@@ -111,30 +117,18 @@ onUnmounted(() => {
 </script>
 
 <style scoped>
-/* استایل‌های لینک‌های منو برای خوانایی بهتر جدا شده‌اند */
 .nav-link {
     @apply text-text-on-primary font-medium pb-1 relative transition-colors;
 }
 
-/* رنگ لینک‌ها بر اساس حالت اسکرول */
 .scrolled .nav-link {
     @apply hover:text-accent;
-}
-
-.scrolled .nav-link.active {
-    /* 'active' class needs to be implemented with Nuxt's router-link-active */
-    @apply text-accent;
 }
 
 header:not(.scrolled) .nav-link {
     @apply hover:text-primary;
 }
 
-header:not(.scrolled) .nav-link.active {
-    @apply text-primary;
-}
-
-/* مخفی کردن نوار قیمت هنگام اسکرول */
 .scrolled .marquee {
     transform: translateY(100%);
     height: 0;
@@ -147,31 +141,32 @@ header:not(.scrolled) .nav-link.active {
     transition: all 0.3s ease-in-out;
 }
 
-/* استایل‌های همبرگر و منوی موبایل */
 .bar {
     display: block;
     width: 25px;
     height: 3px;
     margin: 5px auto;
-    background-color: var(--text-on-primary);
     transition: all 0.3s ease-in-out;
+    border-radius: 2px;
 }
 
 .nav-menu-mobile {
-    position: fixed;
-    right: -100%;
-    top: 0;
-    background-color: var(--primary-color);
-    width: 100%;
-    height: 100vh;
-    transition: 0.4s ease-in-out;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    position: absolute;
+    top: 132px;
+    left: 0;
+    right: 0;
+    padding: 1.5rem 0;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(-20%);
+    opacity: 0;
+    visibility: hidden;
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out, visibility 0.3s, background-color 0.3s ease-in-out;
 }
 
 .nav-menu-mobile.active {
-    right: 0;
+    transform: translateY(0);
+    opacity: 1;
+    visibility: visible;
 }
 
 .hamburger.active .bar:nth-child(2) {
