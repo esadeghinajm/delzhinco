@@ -24,17 +24,17 @@ export default defineNuxtConfig({
   },
 
   i18n: {
+    strategy: 'prefix_except_default',
     locales: [
-      { code: 'fa', name: 'fa-IR', file: 'fa.json', dir: 'rtl' },
-      { code: 'en', name: 'English', file: 'en.json' }
+      { code: 'fa', iso: 'fa-IR', name: 'فارسی', dir: 'rtl', file: 'fa.json' },
+      { code: 'en', iso: 'en-US', name: 'English', dir: 'ltr', file: 'en.json' }
     ],
-    defaultLocale: 'fa', // زبان پیش‌فرض
-    vueI18n: './i18n.config.ts' // مسیر فایل تنظیمات vue-i18n 
+    defaultLocale: 'fa',
+    langDir: 'locales', // به ماژول می‌گوید فایل‌ها در پوشه locales هستند
+    detectBrowserLanguage: {
+      useCookie: true,
+      cookieKey: 'i18n_redirected',
+      redirectOn: 'root',
+    },
   },
-  app: {
-    head: {
-      charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1',
-    }
-  }
 })
