@@ -1,3 +1,15 @@
+/* فایل assets/css/main.css */
+
+@font-face {
+  font-family: "Vazirmatn";
+  /* مسیر جدید با استفاده از alias ~ یا @ که به ریشه اشاره دارد */
+  src: url("~/assets/fonts/Vazirmatn-Regular.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+/* کدهای @font-face برای سایر وزن‌های فونت (Bold, Medium و...) را هم به همین شکل اضافه کنید */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
