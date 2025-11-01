@@ -1,5 +1,8 @@
 {
   // https://nuxt.com/docs/guide/concepts/typescript
+  "compilerOptions": {
+    "types": ["node"] // 🟢 این خط، خطای NodeJS.Timeout را حل می‌کند
+  },
   "files": [],
   "references": [
     {
