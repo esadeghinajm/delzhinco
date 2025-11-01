@@ -1,13 +1,13 @@
 @font-face {
   font-family: "Vazirmatn";
-  src: url("/fonts/Vazirmatn-Regular.woff2") format("woff2"); /* 🟢 مسیر اصلاح شد */
+  src: url("/fonts/Vazirmatn-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: "Vazirmatn";
-  src: url("/fonts/Vazirmatn-Bold.woff2") format("woff2"); /* 🟢 مسیر اصلاح شد */
+  src: url("/fonts/Vazirmatn-Bold.woff2") format("woff2");
   font-weight: 700;
   font-style: normal;
   font-display: swap;
@@ -36,4 +36,13 @@
   .btn-accent {
     @apply btn bg-accent text-text-on-accent hover:bg-accent/90 hover:shadow-lg;
   }
+}
+
+/* انیمیشن برای کاروسل لوگوها */
+@keyframes carousel {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-100%); }
+}
+.animate-carousel {
+  animation: carousel 40s linear infinite;
 }
