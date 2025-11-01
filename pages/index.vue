@@ -1,66 +1,70 @@
+// --- START OF FILE: pages/index.vue ---
 <template>
-    <!-- استفاده از تگ‌های سکشن برای سئوی بهتر -->
-    <main class="container mx-auto px-4 py-32 text-center">
-        <!-- انیمیشن با data-aos -->
-        <section data-aos="fade-up">
-            <h1 class="text-4xl font-bold text-primary dark:text-accent">{{ $t('welcome_title') }}</h1>
-            <p class="mt-4 text-lg">{{ $t('welcome_subtitle') }}</p>
+    <div>
+        <section class="text-center container mx-auto px-4 py-16 md:py-24">
+            <h1 class="text-4xl md:text-6xl font-bold text-heading-color dark:text-dark-heading-color mb-4"
+                data-aos="fade-up">
+                {{ $t('welcome_title') }}
+            </h1>
+            <p class="text-lg md:text-xl text-text-color dark:text-dark-text-color max-w-3xl mx-auto mb-8"
+                data-aos="fade-up" data-aos-delay="200">
+                {{ $t('welcome_subtitle') }}
+            </p>
+            <div data-aos="fade-up" data-aos-delay="400">
+                <AppButton :to="localePath('contact')" variant="accent">
+                    {{ $t('contact') }}
+                </AppButton>
+            </div>
         </section>
-    </main>
+
+        <section class="bg-white dark:bg-dark-surface-bg/50 py-16">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold text-heading-color dark:text-dark-heading-color mb-8" data-aos="fade-up">
+                    {{ $t('services') }}
+                </h2>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                    <div data-aos="fade-up" data-aos-delay="100">
+                        <NuxtImg src="/images/service-1.jpg" alt="Sea Freight"
+                            class="rounded-lg mb-4 w-full h-48 object-cover" />
+                        <h3 class="text-xl font-bold">{{ $t('sea_freight') }}</h3>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="200">
+                        <NuxtImg src="/images/service-2.jpg" alt="Air Freight"
+                            class="rounded-lg mb-4 w-full h-48 object-cover" />
+                        <h3 class="text-xl font-bold">{{ $t('air_freight') }}</h3>
+                    </div>
+                    <div data-aos="fade-up" data-aos-delay="300">
+                        <NuxtImg src="/images/service-3.jpg" alt="Road Freight"
+                            class="rounded-lg mb-4 w-full h-48 object-cover" />
+                        <h3 class="text-xl font-bold">{{ $t('road_freight') }}</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 </template>
 
-<script setup>
-import { useI18n } from '#imports';
-import { useHead } from '#imports';
-
-const { t } = useI18n();
-
-// ✅ پیاده‌سازی کامل سئو با useHead
-useHead(() => ({
-    // عنوان صفحه داینامیک و ترجمه شده
-    title: t('welcome_title'),
+<script setup lang="ts">
+const localePath = useLocalePath();
+useHead({
+    title: 'صفحه اصلی',
     meta: [
-        {
-            name: 'description',
-            content: t('welcome_subtitle') // توضیحات متا ترجمه شده
-        },
-        // تگ‌های Open Graph برای اشتراک‌گذاری در شبکه‌های اجتماعی
-        { property: 'og:title', content: t('welcome_title') },
-        { property: 'og:description', content: t('welcome_subtitle') },
-        { property: 'og:type', content: 'website' },
-        // { property: 'og:image', content: 'https://your-domain.com/social-image.jpg' },
-        // { property: 'og:url', content: 'https://your-domain.com/' },
+        { name: 'description', content: 'خدمات حمل و نقل بین‌المللی دلژین، راهکاری هوشمند و مطمئن برای تجارت شما.' }
     ],
-    // لینک‌های جایگزین برای زبان‌های مختلف (بسیار مهم برای سئوی چندزبانه)
-    link: [
-        {
-            rel: 'alternate',
-            hreflang: 'fa',
-            href: 'https://your-domain.com',
-        },
-        {
-            rel: 'alternate',
-            hreflang: 'en',
-            href: 'https://your-domain.com/en',
-        },
-        {
-            rel: 'alternate',
-            hreflang: 'x-default', // زبان پیش‌فرض
-            href: 'https://your-domain.com',
-        },
-    ],
-    // می‌توانید JSON-LD (داده‌های ساختاریافته) را نیز اینجا اضافه کنید
-    script: [
-        {
-            type: 'application/ld+json',
-            innerHTML: JSON.stringify({
-                '@context': 'https://schema.org',
-                '@type': 'Organization',
-                name: 'Delzhinco',
-                url: 'https://your-domain.com',
-                // logo: 'https://your-domain.com/images/logo-delzhin3.png'
-            })
-        }
-    ]
-}));
+    script: [{
+        type: 'application/ld+json',
+        innerHTML: JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'Organization',
+            'name': 'شرکت دلژین',
+            'url': 'https://delzhinco.com',
+            'logo': 'https://delzhinco.com/logo.png',
+            'contactPoint': {
+                '@type': 'ContactPoint',
+                'telephone': '+98-90008040',
+                'contactType': 'customer service'
+            }
+        })
+    }]
+})
 </script>

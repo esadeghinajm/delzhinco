@@ -1,7 +1,27 @@
 {
+      "company_name": "Delzhin Co.",
+      "company_description": "Delzhin provides modern and integrated solutions in the supply chain, a reliable partner for your business in international trade.",
       "home": "Home",
       "services": "Services",
       "news": "News",
       "about": "About Us",
-      "contact": "Contact Us"
+      "contact": "Contact Us",
+      "quick_access": "Quick Access",
+      "sea_freight": "Sea Freight",
+      "air_freight": "Air Freight",
+      "road_freight": "Road Freight",
+      "door_to_door": "Door-to-Door Services",
+      "contact_us_title": "Contact Us",
+      "address": "No. 176, Khajeh Abdollah Ansari St., Shariati St., Tehran",
+      "phone": "90008040",
+      "email": "Info{'@'}delzhinco.com",
+      "copyright": "All rights reserved for Delzhin Co. © 2025",
+      "welcome_title": "International Trade, Simple and Smart",
+      "welcome_subtitle": "Comprehensive transportation solutions for your business",
+      "instagram": "Instagram",
+      "linkedin": "LinkedIn",
+      "instagram_aria": "Our Instagram Page",
+      "linkedin_aria": "Our LinkedIn Page",
+      "email_aria": "Email Us",
+      "phone_aria": "Call Us"
 }

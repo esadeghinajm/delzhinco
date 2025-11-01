@@ -1,79 +1,71 @@
-<!-- components/LayoutFooter.vue -->
+// --- START OF FILE: components/global/TheFooter.vue ---
 <template>
-  <footer class="bg-primary text-gray-300 pt-20">
+  <footer class="bg-primary dark:bg-dark-primary text-text-on-primary pt-16 pb-8">
     <div class="container mx-auto px-4">
-      <!-- 
-        تغییر اصلی اینجاست: استفاده از flexbox برای کنترل کامل چیدمان.
-        در حالت دسکتاپ (lg) آیتم‌ها برعکس چیده می‌شوند.
-      -->
-      <div class="flex flex-col lg:flex-row-reverse gap-8">
-
-        <!-- Widget 1: About (با عرض بیشتر) -->
-        <div class="w-full lg:w-2/5">
-          <img src="/images/logo-delzhin3.png" alt="لوگو فوتر دلژین" class="w-36 mb-5" />
-          <p class="text-sm leading-7 mb-5">
-            مجموعه دلژین با ارائه راهکارهای نوین و یکپارچه در زنجیره تامین،
-            همراهی مطمئن برای کسب و کار شما در عرصه تجارت بین‌الملل است.
-          </p>
-          <div class="flex gap-4 text-2xl">
-            <a href="#" aria-label="LinkedIn" class="hover:text-accent"><i class="fab fa-linkedin"></i></a>
-            <a href="https://www.instagram.com/delzhin_shipping" target="_blank" aria-label="Instagram"
-              class="hover:text-accent"><i class="fab fa-instagram"></i></a>
-            <a href="mailto:Info@delzhinco.com" aria-label="Email" class="hover:text-accent"><i
-                class="fas fa-envelope"></i></a>
-          </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 mb-8">
+        <div>
+          <h3 class="text-xl font-bold mb-4">{{ $t('company_name') }}</h3>
+          <p class="text-sm opacity-80 leading-relaxed">{{ $t('company_description') }}</p>
         </div>
-
-        <!-- کانتینر برای بقیه ویجت‌ها -->
-        <div class="w-full lg:w-3/5 grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-          <!-- Widget 2: Quick Links -->
-          <div>
-            <h4 class="text-lg text-white font-bold mb-5">دسترسی سریع</h4>
-            <ul class="space-y-3">
-              <li><a href="/" class="hover:text-accent">صفحه نخست</a></li>
-              <li><a href="/about" class="hover:text-accent">درباره ما</a></li>
-              <li><a href="/projects" class="hover:text-accent">پروژه ها</a></li>
-              <li><a href="#" class="hover:text-accent">تماس با ما</a></li>
-            </ul>
-          </div>
-
-          <!-- Widget 3: Services -->
-          <div>
-            <h4 class="text-lg text-white font-bold mb-5">سرویس ها</h4>
-            <ul class="space-y-3">
-              <li><a href="/service-sea" class="hover:text-accent">حمل دریایی</a></li>
-              <li><a href="/service-air" class="hover:text-accent">حمل هوایی</a></li>
-              <li><a href="/service-land" class="hover:text-accent">حمل زمینی</a></li>
-              <li><a href="/service-door-to-door" class="hover:text-accent">خدمات Door-to-Door</a></li>
-            </ul>
-          </div>
-
-          <!-- Widget 4: Contact -->
-          <div>
-            <h4 class="text-lg text-white font-bold mb-5">تماس با ما</h4>
-            <ul class="space-y-3">
-              <li class="flex items-start"><i class="fas fa-map-marker-alt mt-1 ml-2 text-accent"></i> تهران - خیابان
-                شریعتی - خیابان خواجه عبداله انصاری - پلاک ۱۷۶</li>
-              <li class="flex items-center"><i class="fas fa-phone-alt ml-2 text-accent"></i> ۹۰۰۰۸۰۴۰</li>
-              <li class="flex items-center"><i class="fas fa-envelope ml-2 text-accent"></i> Info@delzhinco.com</li>
-            </ul>
+        <div>
+          <h3 class="text-xl font-bold mb-4">{{ $t('quick_access') }}</h3>
+          <ul class="space-y-2">
+            <li v-for="link in quickLinks" :key="link.name">
+              <NuxtLink :to="localePath(link.path)" class="text-sm opacity-80 hover:opacity-100 hover:text-accent dark:hover:text-dark-accent transition" active-class="opacity-100 text-accent dark:text-dark-accent font-bold">
+                {{ $t(link.name) }}
+              </NuxtLink>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">{{ $t('services') }}</h3>
+          <ul class="space-y-2">
+            <li v-for="service in services" :key="service.name">
+              <NuxtLink :to="localePath(service.path)" class="text-sm opacity-80 hover:opacity-100 hover:text-accent dark:hover:text-dark-accent transition" active-class="opacity-100 text-accent dark:text-dark-accent font-bold">
+                {{ $t(service.name) }}
+              </NuxtLink>
+            </li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="text-xl font-bold mb-4">{{ $t('contact_us_title') }}</h3>
+          <ul class="space-y-3">
+            <li class="flex items-start text-sm"><span class="ml-2 mt-1 opacity-80">📍</span>{{ $t('address') }}</li>
+            <li class="flex items-start text-sm"><span class="ml-2 mt-1 opacity-80">📞</span><a :href="`tel:${$t('phone')}`" class="hover:text-accent">{{ $t('phone') }}</a></li>
+            <li class="flex items-start text-sm"><span class="ml-2 mt-1 opacity-80">✉️</span><a :href="`mailto:${$t('email')}`" class="hover:text-accent">{{ $t('email') }}</a></li>
+          </ul>
+          <!-- آیکون‌های اجتماعی در فوتر -->
+          <div class="flex items-center gap-4 mt-4">
+            <a href="#" :aria-label="$t('linkedin_aria')" class="text-white/80 hover:text-white transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a href="#" :aria-label="$t('instagram_aria')" class="text-white/80 hover:text-white transition-colors">
+              <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664 4.771 4.919 4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z"/></svg>
+            </a>
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- بقیه فوتر بدون تغییر باقی می‌ماند -->
-    <div class="mt-8">
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d418.91652016677244!2d51.44937294110799!3d35.7451018720553!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e0300045c0051%3A0xdc236628f0ec6846!2z2KfYqNmG24zZhyDYotmB2LHbjNmGINix24zZiNmG24zYsg!5e0!3m2!1sen!2sus!4v1761407445381!5m2!1sen!2sus"
-        class="w-full h-72" style="border:0;" allowfullscreen="" loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade" title="دفتر مرکزی دلژین"></iframe>
-    </div>
-    <div class="border-t border-white/10 text-center py-5 text-sm">
-      <p>تمامی حقوق این وب‌سایت متعلق به شرکت دلژین می‌باشد. &copy; ۲۰۲۵</p>
+      <div class="text-center text-xs opacity-70 border-t border-white/20 pt-6 mt-8">
+        {{ $t('copyright') }}
+      </div>
     </div>
   </footer>
 </template>
 
-<script setup>
+<script setup lang="ts">
+const localePath = useLocalePath();
+// ... (بقیه اسکریپت بدون تغییر)
+const quickLinks = [
+  { name: 'home', path: 'index' },
+  { name: 'about', path: 'about' },
+  { name: 'services', path: 'services' },
+  { name: 'contact', path: 'contact' },
+];
+
+const services = [
+  { name: 'sea_freight', path: 'services/sea' },
+  { name: 'air_freight', path: 'services/air' },
+  { name: 'road_freight', path: 'services/road' },
+  { name: 'door_to_door', path: 'services/door-to-door' },
+];
 </script>

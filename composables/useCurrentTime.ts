@@ -1,49 +1,49 @@
-import { ref, onMounted, onUnmounted, computed } from 'vue';
-import moment from 'moment-jalaali';
-import { useI18n } from '#imports';
+// --- START OF FILE: composables/useCurrentTime.ts ---
+import { ref, onMounted, onUnmounted } from "vue"
+import moment from "moment-jalaali"
+import { useI18n } from "#imports"
 
-// این یک تابع "کامپوزبل" است که منطق تاریخ را در خود کپسوله می‌کند
 export function useCurrentTime() {
-    const { localeProperties } = useI18n();
-    const dir = computed(() => localeProperties.value.dir);
+  const { locale } = useI18n()
+  const currentDateTime = ref("")
+  const isMobile = ref(false)
+  let dateTimeInterval: NodeJS.Timeout
 
-    const currentDateTime = ref('');
-    const isMobile = ref(false);
-    let dateTimeInterval: NodeJS.Timeout;
+  const updateDateTime = () => {
+    const time = moment().format("HH:mm")
 
-    const handleResize = () => {
-        isMobile.value = window.innerWidth < 1024;
-        updateDateTime();
-    };
+    if (locale.value === "fa") {
+      moment.loadPersian({ usePersianDigits: true })
+      const jalaaliDate = moment().format("dddd jD jMMMM")
+      moment.locale("en")
+      const gregorianDate = moment().format("dddd, MMMM DD")
+      currentDateTime.value = isMobile.value
+        ? `${jalaaliDate} | ${time}`
+        : `${jalaaliDate} | ${gregorianDate} | ${time}`
+    } else {
+      moment.locale("en")
+      const gregorianDate = moment().format("dddd, MMMM DD")
+      currentDateTime.value = `${gregorianDate} | ${time}`
+    }
+  }
 
-    const updateDateTime = () => {
-        const time = moment().format('HH:mm');
+  const handleResize = () => {
+    if (typeof window !== "undefined") {
+      isMobile.value = window.innerWidth < 1024
+      updateDateTime()
+    }
+  }
 
-        moment.loadPersian({ usePersianDigits: true });
-        const jalaaliDate = moment().format('dddd jD jMMMM');
-        moment.locale('en');
-        const gregorianDate = moment().format('dddd, MMMM DD');
+  onMounted(() => {
+    window.addEventListener("resize", handleResize)
+    handleResize()
+    dateTimeInterval = setInterval(updateDateTime, 60000)
+  })
 
-        if (dir.value === 'rtl') {
-            currentDateTime.value = isMobile.value
-                ? `${jalaaliDate} | ${time}`
-                : `${jalaaliDate} | ${gregorianDate} | ${time}`;
-        } else {
-            currentDateTime.value = `${gregorianDate} | ${time}`;
-        }
-    };
+  onUnmounted(() => {
+    window.removeEventListener("resize", handleResize)
+    clearInterval(dateTimeInterval)
+  })
 
-    onMounted(() => {
-        window.addEventListener('resize', handleResize);
-        handleResize();
-        dateTimeInterval = setInterval(updateDateTime, 60000);
-    });
-
-    onUnmounted(() => {
-        window.removeEventListener('resize', handleResize);
-        clearInterval(dateTimeInterval);
-    });
-
-    // فقط داده‌ای که کامپوننت نیاز دارد را برمی‌گردانیم
-    return { currentDateTime };
+  return { currentDateTime }
 }

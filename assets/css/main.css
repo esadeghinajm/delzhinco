@@ -1,15 +1,39 @@
-/* فایل assets/css/main.css */
-
 @font-face {
   font-family: "Vazirmatn";
-  /* مسیر جدید با استفاده از alias ~ یا @ که به ریشه اشاره دارد */
   src: url("~/assets/fonts/Vazirmatn-Regular.woff2") format("woff2");
   font-weight: 400;
   font-style: normal;
   font-display: swap;
 }
-/* کدهای @font-face برای سایر وزن‌های فونت (Bold, Medium و...) را هم به همین شکل اضافه کنید */
+@font-face {
+  font-family: "Vazirmatn";
+  src: url("~/assets/fonts/Vazirmatn-Bold.woff2") format("woff2");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.page-enter-active,
+.page-leave-active {
+  transition: opacity 0.3s ease;
+}
+.page-enter-from,
+.page-leave-to {
+  opacity: 0;
+}
+
+@layer components {
+  .btn {
+    @apply px-6 py-3 rounded-md font-bold transition-all duration-300 ease-in-out inline-block;
+  }
+  .btn-primary {
+    @apply btn bg-primary text-text-on-primary hover:bg-primary/90 hover:shadow-lg;
+  }
+  .btn-accent {
+    @apply btn bg-accent text-text-on-accent hover:bg-accent/90 hover:shadow-lg;
+  }
+}

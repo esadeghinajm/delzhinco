@@ -1,186 +1,103 @@
+// --- START OF FILE: components/global/TheHeader.vue ---
 <template>
-    <header class="w-full fixed top-0 z-[1000] transition-all duration-300 ease-in-out"
-        :class="[isScrolled ? 'bg-primary shadow-lg' : 'bg-accent']">
-        <nav class="w-full mx-auto px-4 sm:px-6 lg:px-8 flex justify-between items-center h-[90px]">
-            <div class="flex items-center gap-4">
-                <button class="md:hidden hamburger z-[1001]" :class="{ active: isMenuOpen }" @click="toggleMenu"
-                    aria-label="Toggle Menu">
-                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary']"></span>
-                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary']"></span>
-                    <span class="bar" :class="[isScrolled ? 'bg-accent' : 'bg-primary']"></span>
-                </button>
-                <div class="hidden sm:flex items-center gap-4 text-text-on-primary">
-                    <LanguageSwitcher />
-                    <a href="https://www.instagram.com/delzhin_shipping" target="_blank" aria-label="Instagram Page"
-                        class="text-xl hover:text-primary transition-colors">
-                        <i class="fab fa-instagram"></i>
+    <header class="sticky top-0 z-40">
+        <!-- نوار قیمت ارز و آیکون‌ها -->
+        <div class="bg-accent dark:bg-dark-accent text-primary dark:text-text-on-accent text-xs font-bold py-2">
+            <div class="container mx-auto px-4 flex justify-between items-center">
+                <!-- آیکون‌های تماس (فقط دسکتاپ) -->
+                <div class="hidden md:flex items-center gap-4">
+                    <a :href="`tel:${$t('phone')}`" :aria-label="$t('phone_aria')"
+                        class="hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path
+                                d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z">
+                            </path>
+                        </svg>
+                    </a>
+                    <a :href="`mailto:${$t('email')}`" :aria-label="$t('email_aria')"
+                        class="hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                            <path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"></path>
+                            <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                        </svg>
+                    </a>
+                    <a href="#" :aria-label="$t('linkedin_aria')" class="hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z" />
+                        </svg>
+                    </a>
+                    <a href="#" :aria-label="$t('instagram_aria')" class="hover:text-white transition-colors">
+                        <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
+                            <path
+                                d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.85s-.011 3.584-.069 4.85c-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07s-3.584-.012-4.85-.07c-3.252-.148-4.771-1.691-4.919-4.919-.058-1.265-.069-1.645-.069-4.85s.011-3.584.069-4.85c.149-3.225 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.85-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948s.014 3.667.072 4.947c.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072s3.667-.014 4.947-.072c4.358-.2 6.78-2.618 6.98-6.98.059-1.281.073-1.689.073-4.948s-.014-3.667-.072-4.947c-.2-4.358-2.618-6.78-6.98-6.98-1.281-.058-1.689-.072-4.948-.072zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.162 6.162 6.162 6.162-2.759 6.162-6.162-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4s1.791-4 4-4 4 1.79 4 4-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44 1.441-.645 1.441-1.44-.645-1.44-1.441-1.44z" />
+                        </svg>
                     </a>
                 </div>
-                <div class="text-text-on-primary text-xs font-light whitespace-nowrap">
-                    {{ currentDateTime }}
+                <!-- قیمت ارز و تاریخ -->
+                <div class="text-center">
+                    <div class="md:hidden"><span>دلار: ۷۲۴,۵۳۸ تومان</span> | <span>یورو: ۸۴۳,۸۲۲ تومان</span></div>
+                    <div class="hidden md:block"><span>{{ currentDateTime }} | </span><span>دلار: ۷۲۴,۵۳۸ تومان</span> |
+                        <span>یورو: ۸۴۳,۸۲۲ تومان</span></div>
                 </div>
-            </div>
-            <div class="hidden md:flex items-center justify-center" :dir="dir">
-                <ul class="flex items-center gap-x-4 lg:gap-x-8 text-sm lg:text-base">
-                    <li>
-                        <NuxtLink to="/" class="nav-link">{{ $t('home') }}</NuxtLink>
-                    </li>
-                    <li>
-                        <NuxtLink to="/services" class="nav-link">{{ $t('services') }}</NuxtLink>
-                    </li>
-                    <li>
-                        <NuxtLink to="/news" class="nav-link">{{ $t('news') }}</NuxtLink>
-                    </li>
-                    <li>
-                        <NuxtLink to="/about" class="nav-link">{{ $t('about') }}</NuxtLink>
-                    </li>
-                    <li>
-                        <NuxtLink to="/contact" class="nav-link">{{ $t('contact') }}</NuxtLink>
-                    </li>
-                </ul>
-            </div>
-            <NuxtLink to="/" aria-label="Homepage" class="flex-shrink-0">
-                <NuxtImg :src="isScrolled ? '/images/logo-whiteText/logo-delzhin-110x110.png' : '/images/logo-darkBlueText/Final2-01.png'"
-                    alt="Delzhin Company Logo" class="h-28 md:h-32 transition-all duration-300" densities="x1 x2"
-                    format="webp" />
-            </NuxtLink>
-        </nav>
-        <div class="marquee" :class="{ 'scrolled-out': isScrolled }">
-            <div
-                class="font-sans font-bold text-xs sm:text-sm flex flex-col sm:flex-row gap-y-2 sm:gap-y-0 sm:gap-x-8 items-center justify-center h-full">
-                <span>دلار (اسکناس/ PMO ) : ۷۲۴,۵۳۸ - ۱۰۷,۸۴۰ تومان</span>
-                <span>یورو (اسکناس/ PMO ) : ۸۴۳,۸۲۲ - ۱۲۵,۳۸۰ تومان</span>
+                <div
+                    class="md:hidden bg-primary dark:bg-dark-primary text-text-on-primary text-xs py-1 text-center font-mono w-full mt-1">
+                    {{ currentDateTime }}</div>
             </div>
         </div>
 
-        <div class="nav-menu-mobile"
-            :class="{ active: isMenuOpen, 'bg-primary': !isScrolled, 'bg-accent': isScrolled }">
-            <ul class="flex flex-col gap-4 text-center items-center">
-                <li class="mb-2">
-                    <LanguageSwitcher />
-                </li>
-                <li>
-                    <NuxtLink to="/" class="mobile-nav-link" @click="toggleMenu">{{ $t('home') }}</NuxtLink>
-                </li>
-                <li>
-                    <NuxtLink to="/services" class="mobile-nav-link" @click="toggleMenu">{{ $t('services') }}</NuxtLink>
-                </li>
-                <li>
-                    <NuxtLink to="/news" class="mobile-nav-link" @click="toggleMenu">{{ $t('news') }}</NuxtLink>
-                </li>
-                <li>
-                    <NuxtLink to="/about" class="mobile-nav-link" @click="toggleMenu">{{ $t('about') }}</NuxtLink>
-                </li>
-                <li>
-                    <NuxtLink to="/contact" class="mobile-nav-link" @click="toggleMenu">{{ $t('contact') }}</NuxtLink>
-                </li>
-                <li class="mt-2">
-                    <a href="https://www.instagram.com/delzhin_shipping" target="_blank" class="text-2xl"
-                        :class="[isScrolled ? 'text-primary' : 'text-accent']">
-                        <i class="fab fa-instagram"></i>
-                    </a>
-                </li>
-            </ul>
-        </div>
+        <!-- نویگیشن اصلی -->
+        <nav class="bg-accent dark:bg-dark-accent shadow-md" style="direction: rtl">
+            <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
+                <NuxtLink :to="localePath('index')" class="text-2xl font-bold text-white">
+                    {{ $t('company_name') }}
+                </NuxtLink>
+
+                <!-- منوی دسکتاپ -->
+                <ul class="hidden lg:flex items-center gap-8 absolute left-1/2 -translate-x-1/2">
+                    <li v-for="link in navLinks" :key="link.name">
+                        <NuxtLink :to="localePath(link.path)"
+                            class="text-white font-medium hover:text-gray-300 dark:hover:text-gray-400 transition-colors whitespace-nowrap"
+                            active-class="!text-primary font-bold">
+                            {{ $t(link.name) }}
+                        </NuxtLink>
+                    </li>
+                </ul>
+
+                <div class="flex items-center gap-2">
+                    <div class="hidden lg:flex items-center gap-2 border-r border-white/30 pr-4">
+                        <LanguageSwitcher />
+                        <ThemeSwitcher />
+                    </div>
+                    <button @click="$emit('openMobileMenu')" aria-label="Open menu"
+                        class="lg:hidden p-2 rounded-md text-white hover:bg-white/20">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16m-7 6h7" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </nav>
     </header>
 </template>
 
-<script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue';
-import { useI18n } from '#imports';
+<script setup lang="ts">
 import { useCurrentTime } from '~/composables/useCurrentTime';
 
-const isMenuOpen = ref(false);
-const toggleMenu = () => (isMenuOpen.value = !isMenuOpen.value);
-
-const isScrolled = ref(false);
-const handleScroll = () => {
-    isScrolled.value = window.scrollY > 10;
-};
-
-const { localeProperties } = useI18n();
-const dir = computed(() => localeProperties.value.dir);
-
 const { currentDateTime } = useCurrentTime();
-onMounted(() => window.addEventListener('scroll', handleScroll));
-onUnmounted(() => window.removeEventListener('scroll', handleScroll));
+const localePath = useLocalePath();
+
+defineEmits(['openMobileMenu']);
+
+interface NavLink { name: string; path: string; }
+
+const navLinks: NavLink[] = [
+    { name: 'home', path: 'index' },
+    { name: 'services', path: 'services' },
+    { name: 'news', path: 'news' },
+    { name: 'about', path: 'about' },
+    { name: 'contact', path: 'contact' },
+];
 </script>
-
-<style scoped>
-.nav-link {
-    @apply text-text-on-primary font-medium pb-1 relative transition-colors duration-300;
-}
-
-header:not(.scrolled) .nav-link:hover {
-    @apply text-primary;
-}
-
-.scrolled .nav-link:hover {
-    @apply text-accent;
-}
-
-.mobile-nav-link {
-    @apply block py-2 text-lg font-bold transition-colors duration-300;
-}
-
-.nav-menu-mobile:not(.bg-accent) .mobile-nav-link {
-    @apply text-accent;
-}
-
-.nav-menu-mobile.bg-accent .mobile-nav-link {
-    @apply text-primary;
-}
-
-.nav-link.router-link-exact-active {
-    @apply text-primary font-extrabold;
-}
-
-.scrolled .nav-link.router-link-exact-active {
-    @apply text-primary;
-}
-
-.nav-menu-mobile .router-link-exact-active {
-    @apply text-primary font-extrabold;
-}
-
-.marquee {
-    @apply bg-white text-primary h-[42px] flex items-center justify-center border-b border-t border-gray-200 px-2 transition-all duration-300 ease-in-out;
-}
-
-.marquee.scrolled-out {
-    transform: translateY(100%);
-    height: 0;
-    padding: 0;
-    border: none;
-    opacity: 0;
-}
-
-.bar {
-    @apply block w-[25px] h-[3px] my-[5px] mx-auto rounded-sm transition-all duration-300 ease-in-out;
-}
-
-.nav-menu-mobile {
-    @apply absolute top-[132px] left-0 right-0 py-6 bg-inherit shadow-lg transition-all duration-300 ease-out;
-    transform: translateY(-20%);
-    opacity: 0;
-    visibility: hidden;
-}
-
-.nav-menu-mobile.active {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-}
-
-.hamburger.active .bar:nth-child(2) {
-    opacity: 0;
-}
-
-.hamburger.active .bar:nth-child(1) {
-    transform: translateY(8px) rotate(45deg);
-}
-
-.hamburger.active .bar:nth-child(3) {
-    transform: translateY(-8px) rotate(-45deg);
-}
-</style>

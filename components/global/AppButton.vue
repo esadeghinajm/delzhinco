@@ -1,8 +1,22 @@
-<!-- حالت ۱: داشتن تگ template -->
+// --- START OF FILE: components/global/AppButton.vue ---
 <template>
-  <!-- محتوای HTML اینجا قرار می‌گیرد -->
+  <NuxtLink v-if="to" :to="to" :class="buttonClass">
+    <slot />
+  </NuxtLink>
+  <button v-else :class="buttonClass">
+    <slot />
+  </button>
 </template>
-<!-- حالت ۲: داشتن تگ script -->
-<script setup>
-  // منطق جاوااسکریپت اینجا قرار می‌گیرد
+
+<script setup lang="ts">
+const props = withDefaults(defineProps < {
+  to?: string;
+  variant?: 'primary' | 'accent';
+} > (), {
+  variant: 'primary'
+});
+
+const buttonClass = computed(() => {
+  return props.variant === 'primary' ? 'btn-primary' : 'btn-accent';
+});
 </script>
