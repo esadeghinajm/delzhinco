@@ -1,51 +1,42 @@
 // --- START OF FILE: pages/index.vue ---
 <template>
     <div>
-        <section class="text-center container mx-auto px-4 py-16 md:py-24">
-            <h1 class="text-4xl md:text-6xl font-bold text-heading-color dark:text-dark-heading-color mb-4"
-                data-aos="fade-up">
-                {{ $t('welcome_title') }}
-            </h1>
-            <p class="text-lg md:text-xl text-text-color dark:text-dark-text-color max-w-3xl mx-auto mb-8"
-                data-aos="fade-up" data-aos-delay="200">
-                {{ $t('welcome_subtitle') }}
-            </p>
-            <div data-aos="fade-up" data-aos-delay="400">
-                <AppButton :to="localePath('contact')" variant="accent">
-                    {{ $t('contact') }}
-                </AppButton>
-            </div>
-        </section>
+        <HeroSlider />
 
-        <section class="bg-white dark:bg-dark-surface-bg/50 py-16">
-            <div class="container mx-auto px-4 text-center">
-                <h2 class="text-3xl font-bold text-heading-color dark:text-dark-heading-color mb-8" data-aos="fade-up">
-                    {{ $t('services') }}
-                </h2>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    <div data-aos="fade-up" data-aos-delay="100">
-                        <NuxtImg src="/images/service-1.jpg" alt="Sea Freight"
-                            class="rounded-lg mb-4 w-full h-48 object-cover" />
-                        <h3 class="text-xl font-bold">{{ $t('sea_freight') }}</h3>
-                    </div>
-                    <div data-aos="fade-up" data-aos-delay="200">
-                        <NuxtImg src="/images/service-2.jpg" alt="Air Freight"
-                            class="rounded-lg mb-4 w-full h-48 object-cover" />
-                        <h3 class="text-xl font-bold">{{ $t('air_freight') }}</h3>
-                    </div>
-                    <div data-aos="fade-up" data-aos-delay="300">
-                        <NuxtImg src="/images/service-3.jpg" alt="Road Freight"
-                            class="rounded-lg mb-4 w-full h-48 object-cover" />
-                        <h3 class="text-xl font-bold">{{ $t('road_freight') }}</h3>
+        <!-- بخش‌های دیگر صفحه اصلی در اینجا اضافه می‌شوند -->
+        <ClientOnly>
+            <section class="bg-white dark:bg-dark-surface-bg/50 py-16">
+                <div class="container mx-auto px-4 text-center">
+                    <h2 class="text-3xl font-bold text-heading-color dark:text-dark-heading-color mb-8"
+                        data-aos="fade-up">
+                        {{ $t('services') }}
+                    </h2>
+                    <!-- در اینجا می‌توانید از NuxtImg برای نمایش تصاویر خدمات استفاده کنید -->
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        <div data-aos="fade-up" data-aos-delay="100">
+                            <NuxtImg src="/images/service-1.jpg" alt="Sea Freight"
+                                class="rounded-lg mb-4 w-full h-48 object-cover" />
+                            <h3 class="text-xl font-bold">{{ $t('sea_freight') }}</h3>
+                        </div>
+                        <div data-aos="fade-up" data-aos-delay="200">
+                            <NuxtImg src="/images/service-2.jpg" alt="Air Freight"
+                                class="rounded-lg mb-4 w-full h-48 object-cover" />
+                            <h3 class="text-xl font-bold">{{ $t('air_freight') }}</h3>
+                        </div>
+                        <div data-aos="fade-up" data-aos-delay="300">
+                            <NuxtImg src="/images/service-3.jpg" alt="Road Freight"
+                                class="rounded-lg mb-4 w-full h-48 object-cover" />
+                            <h3 class="text-xl font-bold">{{ $t('road_freight') }}</h3>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
+        </ClientOnly>
     </div>
 </template>
 
 <script setup lang="ts">
-const localePath = useLocalePath();
+// داده‌های ساختاریافته را برای صفحه اصلی نگه می‌داریم
 useHead({
     title: 'صفحه اصلی',
     meta: [

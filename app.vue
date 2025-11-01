@@ -22,7 +22,7 @@ useHead({
   link: [
     {
       rel: 'preload',
-      href: '/fonts/Vazirmatn-Bold.woff2', // مسیر صحیح از ریشه سایت
+      href: '/fonts/Vazirmatn-Bold.woff2', // 🟢 این مسیر صحیح است اگر پوشه fonts در public باشد
       as: 'font',
       type: 'font/woff2',
       crossorigin: 'anonymous'
