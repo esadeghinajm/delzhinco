@@ -1,11 +1,13 @@
+// --- START OF FILE: pages/index.vue ---
 <template>
     <div>
         <HeroSlider />
         <ClientOnly>
             <HomeServices />
             <HomeWhyUs />
-            <HomeServiceCycle /> <!-- 🟢 کامپوننت جدید اضافه شد -->
-            <HomeProjects />
+            <HomeServiceCycle />
+            <HomeOnlineOrder />
+            <HomeAgencies />
             <HomeBlog />
             <HomeClients />
         </ClientOnly>
@@ -13,7 +15,6 @@
 </template>
 
 <script setup lang="ts">
-// داده‌های ساختاریافته برای سئو
 useHead({
     title: 'صفحه اصلی',
     meta: [
