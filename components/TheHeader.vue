@@ -1,4 +1,4 @@
-// --- START OF FILE: components/global/TheHeader.vue ---
+// --- START OF FILE: components/TheHeader.vue ---
 <template>
     <header class="sticky top-0 z-40 transition-colors duration-300"
         :class="isScrolled ? 'bg-primary dark:bg-dark-primary shadow-lg' : 'bg-accent dark:bg-dark-accent'">
@@ -52,11 +52,12 @@
         <nav style="direction: rtl;">
             <div class="container mx-auto px-4 py-3 flex justify-between items-center relative">
                 <!-- Logo -->
-                <NuxtLink :to="localePath('/')" class="w-32 h-auto">
+                <NuxtLink :to="localePath('/')" class="w-28 h-auto">
                     <Transition name="fade" mode="out-in">
-                        <NuxtImg v-if="isScrolled" src="/images/logos/logo-white.png" alt="Delzhin Logo White"
-                            key="white" />
-                        <NuxtImg v-else src="/images/logos/logo-dark.png" alt="Delzhin Logo Dark" key="dark" />
+                        <NuxtImg v-if="isScrolled" src="/images/logo-darkBlueText/Final2-01.png"
+                            alt="Delzhin Logo White" key="white" />
+                        <NuxtImg v-else src="/images/logo-whiteText/logo-delzhin-110x110.png" alt="Delzhin Logo Dark"
+                            key="dark" />
                     </Transition>
                 </NuxtLink>
 

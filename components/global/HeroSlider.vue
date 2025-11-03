@@ -1,3 +1,4 @@
+<!-- components/global/HeroSlider.vue -->
 <template>
   <div class="relative w-full h-[70vh] md:h-screen overflow-hidden" dir="ltr">
     <!-- Slides Container -->
@@ -14,7 +15,7 @@
             <div class="w-full lg:w-2/3 text-center lg:text-left" data-aos="fade-up">
               <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $t('slide_intro_title') }}</h1>
               <p class="text-base md:text-lg mb-8 leading-relaxed max-w-3xl mx-auto lg:mx-0">{{ $t('slide_intro_desc')
-                }}</p>
+              }}</p>
               <div class="flex items-center justify-center lg:justify-start gap-4">
                 <AppButton to="#" variant="outline">
                   <template #icon>
@@ -37,9 +38,9 @@
           class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
 
-        <div class="absolute top-10 md:top-20 left-1/2 -translate-x-1/2 w-full text-center px-4" data-aos="fade-down">
-          <h2
-            class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500 [text-shadow:_0_2px_10px_rgb(0_0_0_/_50%)]">
+        <div class="absolute top-10 md:top-20 -translate-x-1/2 w-full text-center px-4" data-aos="fade-down">
+          <h2 class="text-3xl md:text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-yellow-300 via-amber-400 to-yellow-500
+             [text-shadow:_0_2px_10px_rgb(0_0_0_/_50%)]">
             {{ $t('anniversary_slide_title') }}
           </h2>
         </div>

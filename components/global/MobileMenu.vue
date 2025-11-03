@@ -1,3 +1,4 @@
+<!-- components/global/MobileMenu.vue -->
 <template>
     <div>
         <!-- Overlay -->

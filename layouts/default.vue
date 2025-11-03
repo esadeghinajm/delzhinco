@@ -1,3 +1,4 @@
+<!-- layouts/default.vue -->
 <template>
   <div class="flex flex-col min-h-screen">
     <TheHeader @open-mobile-menu="isMobileMenuOpen = true" @open-contact-modal="isContactModalOpen = true" />
