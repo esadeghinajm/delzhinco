@@ -1,11 +1,11 @@
-<!-- components/global/MobileMenu.vue -->
+<!-- global/MobileMenu.vue -->
 <template>
     <div>
         <!-- Overlay -->
         <div v-if="isOpen" @click="$emit('close')" class="fixed inset-0 bg-black/50 z-50 transition-opacity lg:hidden"
             :class="isOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'"></div>
 
-        <!-- پنل منو -->
+        <!-- Panel -->
         <div class="fixed top-0 right-0 h-full w-72 bg-surface-bg dark:bg-dark-surface-bg shadow-lg z-50 transform transition-transform duration-300 ease-in-out lg:hidden"
             :class="isOpen ? 'translate-x-0' : 'translate-x-full'" style="direction: rtl;">
             <div class="p-4 flex flex-col h-full">
@@ -21,15 +21,19 @@
                 </div>
                 <ul class="flex flex-col gap-2">
                     <li v-for="link in navLinks" :key="link.name">
-                        <!-- 🟢 اگر لینک path داشت، از NuxtLink استفاده کن -->
-                        <NuxtLink v-if="link.path" :to="localePath(link.path)" @click="handleLinkClick"
-                            class="block p-3 rounded-md text-base text-heading-color dark:text-dark-heading-color font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-                            active-class="!text-primary dark:!text-dark-accent bg-primary/10 dark:bg-dark-accent/10 font-bold">
+                        <!-- Normal Links -->
+                        <NuxtLink v-if="link.type === 'link'" :to="localePath(link.path!)" @click="emit('close')"
+                            class="menu-item" active-class="menu-item-active">
                             {{ $t(link.name) }}
                         </NuxtLink>
-                        <!-- 🟢 در غیر این صورت، یک دکمه برای باز کردن مودال بساز -->
-                        <button v-else @click="handleButtonClick(link.action)"
-                            class="w-full text-right block p-3 rounded-md text-base text-heading-color dark:text-dark-heading-color font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+                        <!-- Dropdown Link -->
+                        <a v-if="link.type === 'dropdown'" :href="link.path" @click.prevent="handleScrollToServices"
+                            class="menu-item">
+                            {{ $t(link.name) }}
+                        </a>
+                        <!-- Contact Button -->
+                        <button v-if="link.type === 'button'" @click="handleContactClick"
+                            class="w-full text-right menu-item">
                             {{ $t(link.name) }}
                         </button>
                     </li>
@@ -49,11 +53,12 @@
 interface NavLink {
     name: string;
     path?: string;
-    action?: () => void;
+    type?: 'link' | 'button' | 'dropdown';
 }
 
 const localePath = useLocalePath();
 const router = useRouter();
+const { t } = useI18n();
 
 const props = defineProps<{
     isOpen: boolean;
@@ -62,26 +67,30 @@ const props = defineProps<{
 
 const emit = defineEmits(['close', 'openContactModal']);
 
-const handleLinkClick = async (event: MouseEvent) => {
-    const target = event.currentTarget as HTMLAnchorElement;
-    const path = target.getAttribute('href');
-
-    if (path && path.includes('#')) {
-        // اگر لینک به یک بخش از صفحه اصلی بود
-        await router.push(path.split('#')[0] || '/');
-        const sectionId = path.split('#')[1];
-        const section = document.getElementById(sectionId);
-        if (section) {
-            section.scrollIntoView({ behavior: 'smooth' });
-        }
-    }
+const handleScrollToServices = async () => {
     emit('close');
+    if (router.currentRoute.value.path !== localePath('/')) {
+        await router.push(localePath('/'));
+    }
+    setTimeout(() => {
+        const section = document.getElementById('services-section');
+        if (section) section.scrollIntoView({ behavior: 'smooth' });
+    }, 100);
 };
 
-const handleButtonClick = (action?: () => void) => {
-    if (action) {
-        emit('openContactModal'); // رویداد را به والد می فرستد
-    }
+const handleContactClick = () => {
+    // For mobile, directly initiate a call
+    window.location.href = `tel:${t('phone')}`;
     emit('close');
 };
 </script>
+
+<style scoped>
+.menu-item {
+    @apply block p-3 rounded-md text-base text-heading-color dark:text-dark-heading-color font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors;
+}
+
+/* .menu-item-active {
+    @apply !text-primary dark: !text-dark-accent bg-primary/10 dark:bg-dark-accent/10 font-bold;
+} */
+</style>

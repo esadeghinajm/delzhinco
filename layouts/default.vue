@@ -7,7 +7,6 @@
     </main>
     <TheFooter />
 
-    <!-- 🟢 راه‌حل: پاس دادن prop الزامی nav-links -->
     <MobileMenu :is-open="isMobileMenuOpen" @close="isMobileMenuOpen = false"
       @open-contact-modal="isContactModalOpen = true; isMobileMenuOpen = false" :nav-links="navLinks" />
 
@@ -21,18 +20,18 @@ import { ref } from 'vue';
 const isMobileMenuOpen = ref(false);
 const isContactModalOpen = ref(false);
 
-// این اینترفیس را برای پشتیبانی از دکمه‌ها نیز گسترش می‌دهیم
 interface NavLink {
   name: string;
-  path?: string; // اختیاری برای لینک‌ها
-  action?: () => void; // اختیاری برای دکمه‌ها
+  path?: string;
+  type?: 'link' | 'button' | 'dropdown';
+  action?: () => void;
 }
 
 const navLinks: NavLink[] = [
-  { name: 'home', path: '/' },
-  { name: 'our_services', path: '/#services-section' }, // لینک به بخش سرویس‌ها در صفحه اصلی
-  { name: 'news', path: '/news' },
-  { name: 'about', path: '/about' },
-  { name: 'contact', action: () => { isContactModalOpen.value = true; } }, // دکمه تماس با ما
+  { name: 'home', path: '/', type: 'link' },
+  { name: 'our_services', path: '/#services-section', type: 'dropdown' },
+  { name: 'news', path: '/news', type: 'link' },
+  { name: 'about', path: '/about', type: 'link' },
+  { name: 'contact', type: 'button' },
 ];
 </script>
