@@ -50,15 +50,13 @@
 </template>
 
 <script setup lang="ts">
-interface NavLink {
-    name: string;
-    path?: string;
-    type?: 'link' | 'button' | 'dropdown';
-}
+import type { NavLink } from '~/types'; // 🟢 ایمپورت تایپ سراسری
 
 const localePath = useLocalePath();
 const router = useRouter();
 const { t } = useI18n();
+
+// 🟢 تعریف داخلی NavLink حذف شد
 
 const props = defineProps<{
     isOpen: boolean;
@@ -84,13 +82,3 @@ const handleContactClick = () => {
     emit('close');
 };
 </script>
-
-<style scoped>
-.menu-item {
-    @apply block p-3 rounded-md text-base text-heading-color dark:text-dark-heading-color font-medium hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors;
-}
-
-/* .menu-item-active {
-    @apply !text-primary dark: !text-dark-accent bg-primary/10 dark:bg-dark-accent/10 font-bold;
-} */
-</style>

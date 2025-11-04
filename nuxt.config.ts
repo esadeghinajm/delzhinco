@@ -1,5 +1,8 @@
 // nuxtCtx.config.ts
 export default defineNuxtConfig({
+    nitro: {
+    compatibilityDate: '2025-11-04'
+  },
   devtools: { enabled: true },
 
   app: {

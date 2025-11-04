@@ -28,7 +28,7 @@ const agencies = [
 /* Scoped styles from your style.css for this component */
 .section-title {
     font-size: 2.5rem;
-    margin-bottom: 60px;
+    margin-bottom: 25px;
     position: relative;
     padding-bottom: 15px;
     text-align: center;

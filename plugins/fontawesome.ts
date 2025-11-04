@@ -4,28 +4,34 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome"
 import {
   faPhone,
   faEnvelope,
-  faMapMarkerAlt,
-  faChevronDown,
-  faArrowLeft,
+  faLocationDot,
   faCheck,
+  faArrowLeft,
   faShip,
   faPlane,
   faTruck,
   faPhoneAlt,
+  faComments,
+  faBoxOpen,
+  faFileAlt,
+  faMapMarkedAlt, // 🟢 آیکون‌های جدید
 } from "@fortawesome/free-solid-svg-icons"
 import { faLinkedin, faInstagram } from "@fortawesome/free-brands-svg-icons"
 
 library.add(
   faPhone,
   faEnvelope,
-  faMapMarkerAlt,
-  faChevronDown,
-  faArrowLeft,
+  faLocationDot,
   faCheck,
+  faArrowLeft,
   faShip,
   faPlane,
   faTruck,
   faPhoneAlt,
+  faComments,
+  faBoxOpen,
+  faFileAlt,
+  faMapMarkedAlt, // 🟢 آیکون‌های جدید
   faLinkedin,
   faInstagram
 )

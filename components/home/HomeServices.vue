@@ -1,6 +1,6 @@
 // --- START OF FILE: components/home/HomeServices.vue ---
 <template>
-  <section id="services-section" class="py-16 md:py-24 bg-surface-bg dark:bg-dark-surface-bg/50">
+  <section id="services-section" class="py-8 bg-surface-bg dark:bg-dark-surface-bg/50">
     <div class="container mx-auto px-4">
       <h2 class="section-title" data-aos="fade-up">{{ $t('our_services') }}</h2>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -20,16 +20,16 @@
 <script setup lang="ts">
 const localePath = useLocalePath();
 const services = [
-  { slug: 'sea-freight', icon: 'ship', title: 'sea_freight' },
-  { slug: 'air-freight', icon: 'plane', title: 'air_freight' },
-  { slug: 'road-freight', icon: 'truck', title: 'road_freight' },
+  { slug: 'sea_freight', icon: 'ship', title: 'sea_freight' },
+  { slug: 'air_freight', icon: 'plane', title: 'air_freight' },
+  { slug: 'road_freight', icon: 'truck', title: 'road_freight' },
 ];
 </script>
 
 <style scoped>
 .section-title {
   font-size: 2.5rem;
-  margin-bottom: 60px;
+  margin-bottom: 25px;
   position: relative;
   padding-bottom: 15px;
   text-align: center;
@@ -75,7 +75,7 @@ const services = [
 
 .service-card-icon {
   font-size: 3.5rem;
-  color: var(--accent-color);
+  color: var(--accent);
   margin-bottom: 20px;
 }
 

@@ -1,9 +1,9 @@
 <template>
-  <div class="relative w-full h-[60vh] md:h-[85vh] overflow-hidden" dir="ltr">
+  <div class="relative w-full h-[70vh] md:h-[85vh] overflow-hidden" dir="ltr">
     <!-- Slides Container -->
     <div class="absolute inset-0 flex transition-transform duration-700 ease-in-out"
       :style="{ transform: `translateX(-${currentIndex * 100}%)` }">
-      <!-- Slide 1: Company Intro -->
+      <!-- Slide 1: Company Intro (بدون تغییر) -->
       <div class="w-full h-full flex-shrink-0 relative p-8"
         style="background-image: linear-gradient(0deg, #c39f61 0%, #15193f 40%);">
         <div class="container mx-auto h-full flex flex-col lg:flex-row items-center justify-center gap-8 text-white">
@@ -17,7 +17,7 @@
             <div data-aos="fade-up">
               <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $t('slide_intro_title') }}</h1>
               <p class="text-base md:text-lg mb-8 leading-relaxed max-w-3xl mx-auto lg:mx-0">{{ $t('slide_intro_desc')
-              }}</p>
+                }}</p>
               <div class="flex items-center justify-center lg:justify-start gap-4">
                 <AppButton :to="localePath('/contact')" variant="outline">
                   <template #icon>
@@ -34,10 +34,9 @@
 
       <!-- Slide 2: Anniversary Celebration -->
       <NuxtLink :to="localePath('/gallery/anniversary')"
-        class="w-full h-full flex-shrink-0 relative cursor-pointer group">
+        class="w-full h-full flex-shrink-0 relative cursor-pointer group bg-black">
         <NuxtImg src="/images/First-anniversary-celebration/cake-cutting-celebration.jpg"
-          alt="First anniversary celebration"
-          class="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+          alt="First anniversary celebration" class="w-full h-full object-fill" preload />
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
 
         <ClientOnly>
@@ -54,7 +53,7 @@
             <ClientOnly>
               <div class="flex justify-center items-end gap-2 md:gap-6 overflow-x-auto pb-4">
                 <div v-for="(profile, index) in anniversaryProfiles" :key="index"
-                  class="text-center flex-shrink-0 w-28 md:w-40" data-aos="fade-up" :data-aos-delay="100 * index">
+                  class="text-center flex-shrink-0 w-2 md:w-40" data-aos="fade-up" :data-aos-delay="100 * index">
                   <NuxtImg :src="profile.image" :alt="$t(profile.name)"
                     class="w-20 h-20 md:w-28 md:h-28 rounded-full border-4 border-accent object-cover mx-auto mb-3" />
                   <h3 class="font-bold text-sm md:text-base">{{ $t(profile.name) }}</h3>
@@ -67,7 +66,7 @@
       </NuxtLink>
     </div>
 
-    <!-- Navigation & Dots -->
+    <!-- Navigation -->
     <button @click="prevSlide"
       class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/20 p-3 rounded-full hover:bg-white/40 transition-colors z-10">
       <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
