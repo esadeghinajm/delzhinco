@@ -54,7 +54,7 @@ const galleryImages = [
   { src: 'images/First-anniversary-celebration/mr-sadri.jpg', caption: 'همایش سالانه دلژین' },
   { src: 'images/First-anniversary-celebration/ms-chitgar.jpg', caption: 'سخنرانی مدیریت' },
   { src: 'images/First-anniversary-celebration/ms-alizadeh.jpg', caption: 'مراسم تقدیر' },
-  { src: 'images/First-anniversary-celebration/mr-semmari.jpg', caption: 'همایش سالانه دلژین' },
+  { src: 'images/First-anniversary-celebration/mr-semsari.jpg', caption: 'همایش سالانه دلژین' },
 ];
 
 const isModalOpen = ref(false);

@@ -7,7 +7,7 @@
         <p class="text-text-color dark:text-dark-text-color" data-aos="fade-up" data-aos-delay="100">{{ $t('home_projects_subtitle') }}</p>
       </div>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-        <div
+        <!-- <div
           v-for="(project, index) in projects"
           :key="index"
           class="group relative rounded-lg overflow-hidden shadow-lg"
@@ -22,17 +22,17 @@
               {{ $t('view_project') }}
             </AppButton>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </section>
 </template>
 
 <script setup lang="ts">
-const projects = [
-  { title: 'پروژه پتروشیمی', image: '/images/projects/project-1.jpg' },
-  { title: 'تجهیزات پزشکی', image: '/images/projects/project-2.jpg' },
-  { title: 'صنایع غذایی', image: '/images/projects/project-3.jpg' },
-  { title: 'قطعات خودرو', image: '/images/projects/project-4.jpg' },
-];
+// const projects = [
+//   { title: 'پروژه پتروشیمی', image: '/images/projects/project-1.jpg' },
+//   { title: 'تجهیزات پزشکی', image: '/images/projects/project-2.jpg' },
+//   { title: 'صنایع غذایی', image: '/images/projects/project-3.jpg' },
+//   { title: 'قطعات خودرو', image: '/images/projects/project-4.jpg' },
+// ];
 </script>

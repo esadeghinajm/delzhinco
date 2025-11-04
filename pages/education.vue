@@ -16,7 +16,7 @@
           <!-- Articles Grid -->
           <div class="w-full lg:w-3/4">
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-              <article v-for="(article, index) in articles" :key="index" class="bg-white dark:bg-gray-800/20 rounded-lg overflow-hidden shadow-sm flex flex-col group" data-aos="fade-up" :data-aos-delay="100 * (index % 2)">
+              <!-- <article v-for="(article, index) in articles" :key="index" class="bg-white dark:bg-gray-800/20 rounded-lg overflow-hidden shadow-sm flex flex-col group" data-aos="fade-up" :data-aos-delay="100 * (index % 2)">
                 <NuxtLink to="#">
                   <NuxtImg :src="article.image" :alt="article.title" class="w-full h-56 object-cover transform group-hover:opacity-80 transition-opacity" />
                 </NuxtLink>
@@ -33,7 +33,7 @@
                   </p>
                   <NuxtLink to="#" class="text-primary dark:text-accent font-bold text-sm mt-auto self-start">{{ $t('read_more') }}</NuxtLink>
                 </div>
-              </article>
+              </article> -->
             </div>
           </div>
 
@@ -59,13 +59,13 @@
 <script setup lang="ts">
 useHead({ title: 'آموزش' });
 
-const articles = [
-  { title: 'اینکوترمز ۲۰۲۰ چیست؟', category: 'international_law', date: '۱۴ آبان ۱۴۰۴', image: '/images/education/edu-1.jpg', excerpt: 'راهنمای کامل اصطلاحات بین‌المللی بازرگانی برای تعیین مسئولیت‌های خریدار و فروشنده.' },
-  { title: 'مدیریت ریسک در حمل و نقل دریایی', category: 'logistics', date: '۱۰ آبان ۱۴۰۴', image: '/images/education/edu-2.jpg', excerpt: 'چگونه از محموله‌های دریایی خود در برابر خطرات احتمالی محافظت کنیم.' },
-  { title: 'اسناد مورد نیاز برای ترخیص کالا', category: 'customs', date: '۵ آبان ۱۴۰۴', image: '/images/education/edu-3.jpg', excerpt: 'چک‌لیست کامل مدارکی که برای یک فرآیند ترخیص سریع و بدون دردسر نیاز دارید.' },
-  { title: 'بهینه‌سازی هزینه‌های حمل هوایی', category: 'logistics', date: '۱ آبان ۱۴۰۴', image: '/images/education/edu-4.jpg', excerpt: 'نکات و ترفندهایی برای کاهش هزینه‌های حمل و نقل هوایی بدون افت کیفیت.' },
-];
-</script>
+// const articles = [
+//   { title: 'اینکوترمز ۲۰۲۰ چیست؟', category: 'international_law', date: '۱۴ آبان ۱۴۰۴', image: '/images/education/edu-1.jpg', excerpt: 'راهنمای کامل اصطلاحات بین‌المللی بازرگانی برای تعیین مسئولیت‌های خریدار و فروشنده.' },
+//   { title: 'مدیریت ریسک در حمل و نقل دریایی', category: 'logistics', date: '۱۰ آبان ۱۴۰۴', image: '/images/education/edu-2.jpg', excerpt: 'چگونه از محموله‌های دریایی خود در برابر خطرات احتمالی محافظت کنیم.' },
+//   { title: 'اسناد مورد نیاز برای ترخیص کالا', category: 'customs', date: '۵ آبان ۱۴۰۴', image: '/images/education/edu-3.jpg', excerpt: 'چک‌لیست کامل مدارکی که برای یک فرآیند ترخیص سریع و بدون دردسر نیاز دارید.' },
+//   { title: 'بهینه‌سازی هزینه‌های حمل هوایی', category: 'logistics', date: '۱ آبان ۱۴۰۴', image: '/images/education/edu-4.jpg', excerpt: 'نکات و ترفندهایی برای کاهش هزینه‌های حمل و نقل هوایی بدون افت کیفیت.' },
+// ];
+// </script>
 
 <style scoped>
 .sidebar-link {

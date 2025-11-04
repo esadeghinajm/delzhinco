@@ -2,7 +2,7 @@
     <div class="bg-surface-bg dark:bg-dark-surface-bg">
         <!-- Hero Section -->
         <section class="relative py-24 md:py-40 text-white text-center overflow-hidden">
-            <NuxtImg src="/images/backgrounds/about-us-bg.jpg" alt="About Us Background"
+            <!-- <NuxtImg src="/images/backgrounds/about-us-bg.jpg" alt="About Us Background" -->
                 class="absolute inset-0 w-full h-full object-cover transform scale-110" />
             <div class="absolute inset-0 bg-primary/70 backdrop-blur-sm"></div>
             <div class="container mx-auto px-4 z-10 relative">
@@ -16,8 +16,8 @@
         <section class="py-16 md:py-24">
             <div class="container mx-auto px-4">
                 <div class="max-w-full mx-auto" data-aos="fade-up">
-                    <NuxtImg src="/images/team/daste jaammi-website delzhin.png" alt="Delzhin Team Group Photo"
-                        class="rounded-xl shadow-2xl w-full" />
+                    <!-- <NuxtImg src="/images/team/daste jaammi-website delzhin.png" alt="Delzhin Team Group Photo"
+                        class="rounded-xl shadow-2xl w-full" /> -->
                 </div>
             </div>
         </section>
@@ -78,13 +78,13 @@
                     {{ $t('our_experts') }}
                 </h2>
                 <div class="flex flex-wrap justify-center gap-6 md:gap-8">
-                    <div v-for="(expert, index) in experts" :key="expert.name" class="text-center" data-aos="zoom-in"
+                    <!-- <div v-for="(expert, index) in experts" :key="expert.name" class="text-center" data-aos="zoom-in"
                         :data-aos-delay="50 * index">
                         <NuxtImg :src="expert.image" :alt="expert.name"
                             class="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover mx-auto mb-4 shadow-md hover:shadow-xl transition-shadow duration-300" />
                         <h4 class="font-semibold text-heading-color dark:text-dark-heading-color">{{ expert.name }}</h4>
                         <p class="text-sm text-text-color dark:text-dark-text-color">{{ $t(expert.title) }}</p>
-                    </div>
+                    </div> -->
                 </div>
             </div>
         </section>
@@ -96,19 +96,19 @@ useHead({ title: 'درباره ما' });
 
 const management = [
     { name: 'یونس واثق', title: 'Founder/Chairman of the Board of Directors', image: '/images/team/vasegh/vasegh-1.webp' },
-    { name: 'امیر صدری', title: 'CEO/Board Member', image: '/public/images/team/sadri/sadri-1.webp' },
-    { name: 'فرشاد خدادادی', title: 'COO/Board Member', image: '/public/images/team/khodadadi/khodadadi-1.webp' },
-    { name: 'حمیدرضا میلانی', title: 'CMO/Board Member', image: '/public/images/team/milani/milani-1-1.webp' },
+    { name: 'امیر صدری', title: 'CEO/Board Member', image: '/images/team/sadri/sadri-1.webp' },
+    { name: 'فرشاد خدادادی', title: 'COO/Board Member', image: '/images/team/khodadadi/khodadadi-1.webp' },
+    { name: 'حمیدرضا میلانی', title: 'CMO/Board Member', image: '/images/team/milani/milani-1-1.webp' },
 ];
 
-const experts = [
-    { name: 'کارشناس ۱', title: 'logistics_expert', image: '/public/images/team/expert-1.jpg' },
-    { name: 'کارشناس ۲', title: 'customs_specialist', image: '/public/images/team/expert-2.jpg' },
-    { name: 'کارشناس ۳', title: 'logistics_expert', image: '/public/images/team/expert-3.jpg' },
-    { name: 'کارشناس ۴', title: 'customs_specialist', image: '/public/images/team/expert-4.jpg' },
-    { name: 'کارشناس ۵', title: 'logistics_expert', image: '/public/images/team/expert-5.jpg' },
-    { name: 'کارشناس ۶', title: 'customs_specialist', image: '/public/images/team/expert-6.jpg' },
-    { name: 'کارشناس ۷', title: 'logistics_expert', image: '/public/images/team/expert-7.jpg' },
-    { name: 'کارشناس ۸', title: 'customs_specialist', image: '/public/images/team/expert-8.jpg' },
-];
+// const experts = [
+//     { name: 'کارشناس ۱', title: 'logistics_expert', image: '/public/images/team/expert-1.jpg' },
+//     { name: 'کارشناس ۲', title: 'customs_specialist', image: '/public/images/team/expert-2.jpg' },
+//     { name: 'کارشناس ۳', title: 'logistics_expert', image: '/public/images/team/expert-3.jpg' },
+//     { name: 'کارشناس ۴', title: 'customs_specialist', image: '/public/images/team/expert-4.jpg' },
+//     { name: 'کارشناس ۵', title: 'logistics_expert', image: '/public/images/team/expert-5.jpg' },
+//     { name: 'کارشناس ۶', title: 'customs_specialist', image: '/public/images/team/expert-6.jpg' },
+//     { name: 'کارشناس ۷', title: 'logistics_expert', image: '/public/images/team/expert-7.jpg' },
+//     { name: 'کارشناس ۸', title: 'customs_specialist', image: '/public/images/team/expert-8.jpg' },
+// ];
 </script>

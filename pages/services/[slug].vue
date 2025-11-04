@@ -42,9 +42,9 @@ const route = useRoute();
 const { t } = useI18n();
 
 const servicesData = {
-  'road-freight': { title: t('road_freight'), image: '/images/services/road-freight.jpg', description: t('road_freight_desc') },
-  'air-freight': { title: t('air_freight'), image: '/images/services/air-freight.jpg', description: t('air_freight_desc') },
-  'sea-freight': { title: t('sea_freight'), image: '/images/services/sea-freight.jpg', description: t('sea_freight_desc') },
+  'road-freight': { title: t('road_freight'), image: '/images/pooster-video.png', description: t('road_freight_desc') },
+  'air-freight': { title: t('air_freight'), image: '/images/pooster-video.png', description: t('air_freight_desc') },
+  'sea-freight': { title: t('sea_freight'), image: '/images/pooster-video.png', description: t('sea_freight_desc') },
 };
 
 const service = servicesData[route.params.slug as keyof typeof servicesData];
