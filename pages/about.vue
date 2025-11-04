@@ -12,8 +12,19 @@
             </div>
         </section>
 
-        <!-- Story and Mission Section -->
+        <!-- 🟢 START: بخش عکس گروهی جدید 🟢 -->
         <section class="py-16 md:py-24">
+            <div class="container mx-auto px-4">
+                <div class="max-w-full mx-auto" data-aos="fade-up">
+                    <NuxtImg src="/images/team/daste jaammi-website delzhin.png" alt="Delzhin Team Group Photo"
+                        class="rounded-xl shadow-2xl w-full" />
+                </div>
+            </div>
+        </section>
+        <!-- 🟢 END: بخش عکس گروهی جدید 🟢 -->
+
+        <!-- Story and Mission Section -->
+        <section class="pb-16 md:pb-24">
             <div class="container mx-auto px-4">
                 <div class="grid lg:grid-cols-2 gap-12 items-center">
                     <div data-aos="fade-right">
@@ -32,37 +43,31 @@
 
         <!-- 🟢 START: بخش تیم مدیریت با طراحی جدید 🟢 -->
         <section class="py-16 md:py-24 bg-gray-100 dark:bg-dark-primary/20">
-      <div class="container mx-auto px-4">
-        <h2 class="text-3xl font-bold text-center text-heading-color dark:text-dark-heading-color mb-16" data-aos="fade-up">
-          {{ $t('management_team') }}
-        </h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-          <div 
-            v-for="(member, index) in management" 
-            :key="member.name" 
-            class="group" 
-            data-aos="fade-up" 
-            :data-aos-delay="100 * index"
-          >
-            <!-- کانتینر تصویر با نسبت ابعاد عمودی -->
-            <div class="relative rounded-lg overflow-hidden shadow-lg aspect-[3/4]">
-              <NuxtImg 
-                :src="member.image" 
-                :alt="member.name" 
-                class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" 
-              />
-              <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent"></div>
-              <div class="absolute bottom-0 left-0 p-6 text-white w-full">
-                <h3 class="text-2xl font-bold">{{ member.name }}</h3>
-                <p class="text-accent dark:text-dark-accent font-semibold opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                  {{ member.title }}
-                </p>
-              </div>
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-heading-color dark:text-dark-heading-color mb-16"
+                    data-aos="fade-up">
+                    {{ $t('management_team') }}
+                </h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div v-for="(member, index) in management" :key="member.name" class="group" data-aos="fade-up"
+                        :data-aos-delay="100 * index">
+                        <!-- کانتینر تصویر با نسبت ابعاد عمودی -->
+                        <div class="relative rounded-lg overflow-hidden shadow-lg aspect-[3/4]">
+                            <NuxtImg :src="member.image" :alt="member.name"
+                                class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500" />
+                            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent"></div>
+                            <div class="absolute bottom-0 left-0 p-6 text-white w-full">
+                                <h3 class="text-2xl font-bold">{{ member.name }}</h3>
+                                <p
+                                    class="text-accent dark:text-dark-accent font-semibold opacity-0 transform translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                                    {{ member.title }}
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
-    </section>
+        </section>
         <!-- 🟢 END: بخش تیم مدیریت با طراحی جدید 🟢 -->
 
         <!-- Our Experts -->

@@ -1,14 +1,11 @@
 <template>
     <section class="py-16 md:py-24">
         <div class="container mx-auto px-4">
-            <div class="flex flex-col lg:flex-row items-center gap-12"
-            style="background-color: violet;">
-                <div class="lg:w-1/2 relative rounded-lg shadow-lg overflow-hidden"
-                    data-aos="fade-left"
-                    style="background-color: red;aspect-ratio:9/9">
+            <div class="flex flex-col lg:flex-row items-center gap-12">
+                <div class="lg:w-1/2 relative rounded-lg shadow-lg overflow-hidden" data-aos="fade-left"
+                    style="aspect-ratio:9/9">
                     <video ref="promoVideo" class="absolute top-0 left-0 w-full h-full object-cover"
-                        src="/videos/promo-video.mp4" poster="/images/pooster-video.png" playsinline
-                        style="background-color: blue;">
+                        src="/videos/promo-video.mp4" poster="/images/pooster-video.png" playsinline>
                         Your browser does not support the video tag.
                     </video>
                     <button v-if="!isPlaying" @click="playVideo"
@@ -36,7 +33,7 @@
                                 <font-awesome-icon :icon="['fas', 'check']" />
                             </div>
                             <span class="text-heading-color dark:text-dark-heading-color font-semibold">{{ $t(feature)
-                            }}</span>
+                                }}</span>
                         </li>
                     </ul>
                 </div>

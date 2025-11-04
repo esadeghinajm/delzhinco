@@ -31,8 +31,6 @@
           </ClientOnly>
         </div>
       </div>
-
-      <!-- Slide 2: Anniversary Celebration -->
       <NuxtLink :to="localePath('/gallery/anniversary')"
         class="w-full h-full flex-shrink-0 relative cursor-pointer group bg-black">
         <NuxtImg src="/images/First-anniversary-celebration/cake-cutting-celebration.jpg"
@@ -64,9 +62,43 @@
           </div>
         </div>
       </NuxtLink>
+
+      <div class="w-full h-full flex-shrink-0 relative bg-accent dark:bg-dark-accent">
+        <!-- لایه مثلثی سرمه‌ای -->
+        <div class="absolute top-0 right-0 h-full w-full bg-primary dark:bg-dark-primary"
+          style="clip-path: polygon(100% 0, 100% 100%, 0 100%);"></div>
+
+        <div
+          class="relative z-10 container mx-auto h-full flex flex-col lg:flex-row-reverse items-center justify-center gap-8">
+          <!-- بخش تصویر (سمت راست) -->
+          <div class="w-full lg:w-1/2" data-aos="fade-left">
+            <NuxtImg src="/images/poster.jpg" alt="Delzhin expert team" class="rounded-lg shadow-2xl" />
+          </div>
+
+          <!-- بخش متن (سمت چپ) -->
+          <div class="w-full lg:w-1/2 p-8 text-center lg:text-right">
+            <ClientOnly>
+              <div data-aos="fade-up">
+                <h2 class="text-3xl md:text-4xl font-bold text-white mb-4">{{ $t('slide_team_title') }}</h2>
+                <p class="text-lg text-white/90 mb-4 font-semibold">{{ $t('slide_team_subtitle') }}</p>
+                <p class="text-white/80 leading-relaxed mb-8">{{ $t('slide_team_desc') }}</p>
+                <AppButton :to="localePath('/#services-section')" variant="outline">
+                  {{ $t('view_services') }}
+                </AppButton>
+              </div>
+            </ClientOnly>
+          </div>
+        </div>
+      </div>
+      <!-- 🟢 END: اسلاید جدید 🟢 -->
+
+      <!-- Slide 3: Anniversary Celebration (بدون تغییر) -->
+      <NuxtLink :to="localePath('/gallery/anniversary')"
+        class="w-full h-full flex-shrink-0 relative cursor-pointer group bg-black">
+        <!-- ... محتوای اسلاید ۳ ... -->
+      </NuxtLink>
     </div>
 
-    <!-- Navigation -->
     <button @click="prevSlide"
       class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-white/20 p-3 rounded-full hover:bg-white/40 transition-colors z-10">
       <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,7 +112,7 @@
       </svg>
     </button>
     <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3 z-10">
-      <button v-for="index in 2" :key="index" @click="goToSlide(index - 1)" class="w-3 h-3 rounded-full transition-all"
+      <button v-for="index in 3" :key="index" @click="goToSlide(index - 1)" class="w-3 h-3 rounded-full transition-all"
         :class="currentIndex === (index - 1) ? 'bg-white scale-125' : 'bg-white/50 hover:bg-white/75'"></button>
     </div>
   </div>
@@ -99,9 +131,10 @@ const anniversaryProfiles = ref([
   { name: 'profile_7_name', title: 'profile_7_title', image: '/images/First-anniversary-celebration/mr-jabraeili.jpg' },
 ]);
 const currentIndex = ref(0);
+const totalSlides = 3;
 let slideInterval: NodeJS.Timeout;
-const nextSlide = () => { currentIndex.value = (currentIndex.value + 1) % 2; };
-const prevSlide = () => { currentIndex.value = (currentIndex.value - 1 + 2) % 2; };
+const nextSlide = () => { currentIndex.value = (currentIndex.value + 1) % totalSlides; };
+const prevSlide = () => { currentIndex.value = (currentIndex.value - 1 + totalSlides) % totalSlides; };
 const goToSlide = (index: number) => { currentIndex.value = index; };
 onMounted(() => { slideInterval = setInterval(nextSlide, 7000); });
 onUnmounted(() => { clearInterval(slideInterval); });

@@ -106,5 +106,13 @@
   "category": "Category",
   "logistics": "Logistics",
   "customs": "Customs Affairs",
-  "international_law": "International Law"
+  "international_law": "International Law",
+  "our_story": "Our Story",
+  "our_mission": "Our Mission",
+  "story_p1": "Delzhin was founded in [...] with a simple goal: to simplify the complexities of international transport. We started with a small but motivated team, and today we have become a trusted player in the logistics industry.",
+  "mission_p1": "Our mission is to provide integrated, innovative, and customer-centric logistics solutions that help businesses grow in global markets. We believe in transparency, commitment, and quality every step of the way.",
+  "slide_team_title": "Beyond a Service, A Strategic Partnership",
+  "slide_team_subtitle": "Our expert team is the beating heart of Delzhin. We are a blend of experience, innovation, and commitment, striving every day for one goal: to provide solutions that not only move your cargo but also move your business forward.",
+  "slide_team_desc": "By meticulously analyzing your needs and leveraging the latest logistics technologies, we optimize your processes and reduce costs. From initial consultation to final delivery, our experts are with you every step of the way to ensure a seamless and reliable shipping experience. For us, every project is a long-term partnership to achieve mutual success.",
+  "view_services": "Explore Our Services"
 }
