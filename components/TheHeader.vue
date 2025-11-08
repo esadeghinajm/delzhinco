@@ -66,12 +66,12 @@
         <nav style="direction: rtl;">
             <div class="mx-auto px-4 py-3 flex justify-between items-center relative">
                 <!-- Logo -->
-                <NuxtLink :to="localePath('/')" class="w-32 h-auto">
+                <NuxtLink :to="localePath('/')" class="w-20 h-auto">
                     <ClientOnly>
                         <Transition name="fade" mode="out-in">
-                            <NuxtImg v-if="isScrolled" src="/images/logo-whiteText/1000173802-768x768-1-300x300.png"
+                            <NuxtImg v-if="isScrolled" src="/images/logo/logo-white-text-300x300.png"
                                 alt="Delzhin Logo White" key="white" />
-                            <NuxtImg v-else src="/images/logo-darkBlueText/Final2-01.png" alt="Delzhin Logo Dark"
+                            <NuxtImg v-else src="/images/logo/logo-dark-blue-text-300x300.png" alt="Delzhin Logo Dark"
                                 key="dark" />
                         </Transition>
                     </ClientOnly>

@@ -5,7 +5,7 @@
 
         <!-- About Section (ستون اول) -->
         <div class="lg:col-span-1">
-          <NuxtImg src="/images/logo-delzhin3.png" alt="Delzhin Footer Logo" class="w-40 mb-4" />
+          <NuxtImg src="/images/logo/logo-white-text-600x600.png" alt="Delzhin Footer Logo" class="w-40 mb-4" />
           <p class="text-sm opacity-80 leading-relaxed">{{ $t('company_description') }}</p>
         </div>
 

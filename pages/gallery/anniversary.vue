@@ -1,4 +1,3 @@
-// --- START OF FILE: pages/gallery/anniversary.vue ---
 <template>
   <div class="bg-surface-bg dark:bg-dark-surface-bg py-16 md:py-24">
     <div class="container mx-auto px-4">
@@ -16,7 +15,8 @@
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
         <div v-for="(image, index) in galleryImages" :key="image.src" class="overflow-hidden rounded-lg shadow-lg group"
           data-aos="zoom-in" :data-aos-delay="50 * index" @click="openModal(index)">
-          <NuxtImg :src="image.src" :alt="image.alt"
+          <!-- 🟢 راه‌حل ۱: استفاده از caption به جای alt -->
+          <NuxtImg :src="image.src" :alt="image.caption"
             class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-300 cursor-pointer" />
         </div>
       </div>
@@ -24,12 +24,14 @@
 
     <!-- Image Modal -->
     <Teleport to="body">
-      <div v-if="isModalOpen" class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4"
-        @click="closeModal">
+      <!-- 🟢 راه‌حل ۳: اضافه کردن v-if برای چک کردن آبجکت -->
+      <div v-if="isModalOpen && selectedImage"
+        class="fixed inset-0 bg-black/80 z-50 flex items-center justify-center p-4" @click="closeModal">
         <button @click.stop="prevImage"
           class="absolute left-4 top-1/2 -translate-y-1/2 text-white bg-white/10 p-3 rounded-full">&lt;</button>
-        <img :src="galleryImages[currentImageIndex].src" :alt="galleryImages[currentImageIndex].alt"
-          class="max-w-full max-h-[90vh] object-contain" @click.stop>
+        <!-- 🟢 راه‌حل ۳: استفاده از selectedImage -->
+        <img :src="selectedImage.src" :alt="selectedImage.caption" class="max-w-full max-h-[90vh] object-contain"
+          @click.stop>
         <button @click.stop="nextImage"
           class="absolute right-4 top-1/2 -translate-y-1/2 text-white bg-white/10 p-3 rounded-full">&gt;</button>
         <button @click="closeModal" class="absolute top-4 right-4 text-white text-3xl">&times;</button>
@@ -39,26 +41,29 @@
 </template>
 
 <script setup lang="ts">
-import { ref } from 'vue';
+import { ref, computed } from 'vue';
 
 useHead({
   title: 'گالری تصاویر جشن سالگرد'
 });
 
 const galleryImages = [
-  { src: 'images/First-anniversary-celebration/cake-cutting-celebration.jpg', caption: 'توضیحات عکس اول' },
-  { src: 'images/First-anniversary-celebration/celebration.jpg', caption: 'مراسم تقدیر' },
-  { src: 'images/First-anniversary-celebration/mr-jabraeili.jpg', caption: 'همایش سالانه دلژین' },
-  { src: 'images/First-anniversary-celebration/mr-momeni.jpg', caption: 'سخنرانی مدیریت' },
-  { src: 'images/First-anniversary-celebration/mr-nikpey.jpg', caption: 'مراسم تقدیر' },
-  { src: 'images/First-anniversary-celebration/mr-sadri.jpg', caption: 'همایش سالانه دلژین' },
-  { src: 'images/First-anniversary-celebration/ms-chitgar.jpg', caption: 'سخنرانی مدیریت' },
-  { src: 'images/First-anniversary-celebration/ms-alizadeh.jpg', caption: 'مراسم تقدیر' },
-  { src: 'images/First-anniversary-celebration/mr-semsari.jpg', caption: 'همایش سالانه دلژین' },
+  { src: '/images/first-anniversary-celebration/cake-cutting-celebration.jpg', caption: 'توضیحات عکس اول' },
+  { src: '/images/first-anniversary-celebration/celebration.jpg', caption: 'مراسم تقدیر' },
+  { src: '/images/first-anniversary-celebration/mr-jabraeili.jpg', caption: 'همایش سالانه دلژین' },
+  { src: '/images/first-anniversary-celebration/mr-momeni.jpg', caption: 'سخنرانی مدیریت' },
+  { src: '/images/first-anniversary-celebration/mr-nikpey.jpg', caption: 'مراسم تقدیر' },
+  { src: '/images/first-anniversary-celebration/mr-sadri.jpg', caption: 'همایش سالانه دلژین' },
+  { src: '/images/first-anniversary-celebration/ms-chitgar.jpg', caption: 'سخنرانی مدیریت' },
+  { src: '/images/first-anniversary-celebration/ms-alizadeh.jpg', caption: 'مراسم تقدیر' },
+  { src: '/images/first-anniversary-celebration/mr-semsari.jpg', caption: 'همایش سالانه دلژین' },
 ];
 
 const isModalOpen = ref(false);
 const currentImageIndex = ref(0);
+
+// 🟢 راه‌حل ۳: ایجاد یک computed property برای دسترسی امن
+const selectedImage = computed(() => galleryImages[currentImageIndex.value]);
 
 const openModal = (index: number) => {
   currentImageIndex.value = index;

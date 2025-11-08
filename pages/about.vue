@@ -3,7 +3,7 @@
         <!-- Hero Section -->
         <section class="relative py-24 md:py-40 text-white text-center overflow-hidden">
             <!-- <NuxtImg src="/images/backgrounds/about-us-bg.jpg" alt="About Us Background" -->
-                class="absolute inset-0 w-full h-full object-cover transform scale-110" />
+            class="absolute inset-0 w-full h-full object-cover transform scale-110" />
             <div class="absolute inset-0 bg-primary/70 backdrop-blur-sm"></div>
             <div class="container mx-auto px-4 z-10 relative">
                 <h1 class="text-4xl md:text-6xl font-bold mb-4" data-aos="fade-up">{{ $t('about_us_page_title') }}</h1>
@@ -95,10 +95,10 @@
 useHead({ title: 'درباره ما' });
 
 const management = [
-    { name: 'یونس واثق', title: 'Founder/Chairman of the Board of Directors', image: '/images/team/vasegh/vasegh-1.webp' },
-    { name: 'امیر صدری', title: 'CEO/Board Member', image: '/images/team/sadri/sadri-1.webp' },
-    { name: 'فرشاد خدادادی', title: 'COO/Board Member', image: '/images/team/khodadadi/khodadadi-1.webp' },
-    { name: 'حمیدرضا میلانی', title: 'CMO/Board Member', image: '/images/team/milani/milani-1-1.webp' },
+    { name: 'یونس واثق', title: 'Founder/Chairman of the Board of Directors', image: '/images/team/managers/younes-vasegh.webp' },
+    { name: 'امیر صدری', title: 'CEO/Board Member', image: '/images/team/managers/amir-sadri.webp' },
+    { name: 'فرشاد خدادادی', title: 'COO/Board Member', image: '/images/team/managers/farshad-khodadadi.webp' },
+    { name: 'حمیدرضا میلانی', title: 'CMO/Board Member', image: '/images/team/managers/hamidreza-milani.webp' },
 ];
 
 // const experts = [

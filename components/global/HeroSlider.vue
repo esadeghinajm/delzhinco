@@ -9,7 +9,7 @@
         <div class="container mx-auto h-full flex flex-col lg:flex-row items-center justify-center gap-8 text-white">
           <ClientOnly fallback-tag="div" class="w-full lg:w-1/3 flex justify-center">
             <div data-aos="zoom-in">
-              <NuxtImg src="/images/logo-whiteText/logo-delzhin-768x768.png" alt="Delzhin Golden Logo"
+              <NuxtImg src="/images/logo/logo-white-text-768x768.png" alt="Delzhin Golden Logo"
                 class="max-w-xs lg:max-w-full" />
             </div>
           </ClientOnly>
@@ -17,7 +17,7 @@
             <div data-aos="fade-up">
               <h1 class="text-4xl md:text-5xl font-bold mb-4">{{ $t('slide_intro_title') }}</h1>
               <p class="text-base md:text-lg mb-8 leading-relaxed max-w-3xl mx-auto lg:mx-0">{{ $t('slide_intro_desc')
-              }}</p>
+                }}</p>
               <div class="flex items-center justify-center lg:justify-start gap-4">
                 <AppButton :to="localePath('/contact')" variant="outline">
                   <template #icon>
@@ -35,7 +35,7 @@
       <!-- Slide 2: Anniversary Celebration -->
       <NuxtLink :to="localePath('/gallery/anniversary')"
         class="w-full h-full flex-shrink-0 relative cursor-pointer group bg-black">
-        <NuxtImg src="/images/First-anniversary-celebration/cake-cutting-celebration.jpg"
+        <NuxtImg src="/images/first-anniversary-celebration/cake-cutting-celebration.jpg"
           alt="First anniversary celebration" class="w-full h-full object-fill" preload />
         <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/50 to-transparent"></div>
         <ClientOnly>
@@ -126,13 +126,13 @@
 import { ref, onMounted, onUnmounted } from 'vue';
 const localePath = useLocalePath();
 const anniversaryProfiles = ref([
-  { name: 'profile_1_name', title: 'profile_1_title', image: '/images/First-anniversary-celebration/mr-semsari.jpg' },
-  { name: 'profile_2_name', title: 'profile_2_title', image: '/images/First-anniversary-celebration/mr-nikpey.jpg' },
-  { name: 'profile_3_name', title: 'profile_3_title', image: '/images/First-anniversary-celebration/ms-chitgar.jpg' },
-  { name: 'profile_4_name', title: 'profile_4_title', image: '/images/First-anniversary-celebration/mr-momeni.jpg' },
-  { name: 'profile_5_name', title: 'profile_5_title', image: '/images/First-anniversary-celebration/ms-alizadeh.jpg' },
-  { name: 'profile_6_name', title: 'profile_6_title', image: '/images/First-anniversary-celebration/mr-sadri.jpg' },
-  { name: 'profile_7_name', title: 'profile_7_title', image: '/images/First-anniversary-celebration/mr-jabraeili.jpg' },
+  { name: 'profile_1_name', title: 'profile_1_title', image: '/images/first-anniversary-celebration/mr-semsari.jpg' },
+  { name: 'profile_2_name', title: 'profile_2_title', image: '/images/first-anniversary-celebration/mr-nikpey.jpg' },
+  { name: 'profile_3_name', title: 'profile_3_title', image: '/images/first-anniversary-celebration/ms-chitgar.jpg' },
+  { name: 'profile_4_name', title: 'profile_4_title', image: '/images/first-anniversary-celebration/mr-momeni.jpg' },
+  { name: 'profile_5_name', title: 'profile_5_title', image: '/images/first-anniversary-celebration/ms-alizadeh.jpg' },
+  { name: 'profile_6_name', title: 'profile_6_title', image: '/images/first-anniversary-celebration/mr-sadri.jpg' },
+  { name: 'profile_7_name', title: 'profile_7_title', image: '/images/first-anniversary-celebration/mr-jabraeili.jpg' },
 ]);
 const currentIndex = ref(0);
 const totalSlides = 3;

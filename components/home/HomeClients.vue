@@ -16,10 +16,10 @@
 
 <script setup lang="ts">
 const logos = [
-  '/images/best-customers/bijan/Bijan-Logo-1030x1030-1-110x110.png',
-  '/images/best-customers/mahan-air/Mahan-Air-Logo-1030x1030-1-110x110.png',
-  '/images/best-customers/mapna/Mapna-Group-Logo-1030x1030-1-110x110.png',
-  '/images/best-customers/petroshimi/logo-98-1024x808-1-110x110.jpg',
-  '/images/best-customers/ZYCLUSMED/ZYCLUSMED-LOGO-1.png',
+  '/images/best-customers/bijan-110x110.png',
+  '/images/best-customers/mahan-air-110x110.png',
+  '/images/best-customers/mapna-group-110x110.png',
+  '/images/best-customers/petroshimi-110x110.jpg',
+  '/images/best-customers/zyclusmed.png',
 ];
 </script>
