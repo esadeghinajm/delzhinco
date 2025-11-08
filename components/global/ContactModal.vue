@@ -22,11 +22,11 @@
           </li>
           <li class="flex items-center gap-4">
             <font-awesome-icon :icon="['fab', 'linkedin']" class="text-accent text-xl w-6" />
-            <a href="#" class="text-lg text-text-color dark:text-dark-text-color hover:text-accent" target="_blank">{{ $t('linkedin') }}</a>
+            <a href="https://www.linkedin.com/company/delzhin-melal-kayhan" class="text-lg text-text-color dark:text-dark-text-color hover:text-accent" target="_blank">{{ $t('linkedin') }}</a>
           </li>
           <li class="flex items-center gap-4">
             <font-awesome-icon :icon="['fab', 'instagram']" class="text-accent text-xl w-6" />
-            <a href="#" class="text-lg text-text-color dark:text-dark-text-color hover:text-accent" target="_blank">{{ $t('instagram') }}</a>
+            <a href="https://www.instagram.com/delzhin_shipping?igsh=dmljeGp1M256Y2lh" class="text-lg text-text-color dark:text-dark-text-color hover:text-accent" target="_blank">{{ $t('instagram') }}</a>
           </li>
           <li class="flex items-start gap-4">
             <font-awesome-icon :icon="['fas', 'location-dot']" class="text-accent text-xl w-6 mt-1" />

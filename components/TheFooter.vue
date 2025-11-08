@@ -58,16 +58,17 @@
               <font-awesome-icon :icon="['fas', 'envelope']" class="w-5 ml-2 mt-1 flex-shrink-0 opacity-80" />
               <a :href="`mailto:${$t('email')}`" class="hover:text-accent">{{ $t('email') }}</a>
             </li>
+            <li class="flex items-start text-sm">
+              <font-awesome-icon :icon="['fab', 'linkedin']" class="w-5 ml-2 mt-1 flex-shrink-0 opacity-80" />
+              <a href="https://www.linkedin.com/company/delzhin-melal-kayhan" class="hover:text-accent">{{
+                $t('linkedin_aria') }}</a>
+            </li>
+            <li class="flex items-start text-sm">
+              <font-awesome-icon :icon="['fab', 'instagram']" class="w-5 ml-2 mt-1 flex-shrink-0 opacity-80" />
+              <a href="https://www.instagram.com/delzhin_shipping?igsh=dmljeGp1M256Y2lh" class="hover:text-accent">{{
+                $t('instagram_aria') }}</a>
+            </li>
           </ul>
-          <!-- آیکون‌های اجتماعی در فوتر -->
-          <div class="flex items-center gap-4 mt-6 text-xl">
-            <a href="#" :aria-label="$t('linkedin_aria')" class="text-white/80 hover:text-white transition-colors">
-              <font-awesome-icon :icon="['fab', 'linkedin']" class="w-5 h-5" />
-            </a>
-            <a href="#" :aria-label="$t('instagram_aria')" class="text-white/80 hover:text-white transition-colors">
-              <font-awesome-icon :icon="['fab', 'instagram']" class="w-5 h-5" />
-            </a>
-          </div>
         </div>
 
       </div>

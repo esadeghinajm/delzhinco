@@ -10,6 +10,9 @@ export default defineNuxtConfig({
       title: "دلژین | حمل و نقل بین‌المللی",
       charset: "utf-8",
       viewport: "width=device-width, initial-scale=1",
+      link: [
+        { rel: 'icon', type: 'image/x-icon', href: '/logo.png' }
+      ],
       meta: [
         {
           name: "description",
